@@ -77,7 +77,7 @@ GOOGLE_CUSTOM_SEARCH_API_KEY=your_api_key_here
 GOOGLE_SEARCH_ENGINE_ID=your_search_engine_id_here
 
 # Example:
-# GOOGLE_CUSTOM_SEARCH_API_KEY=AIzaSyBxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+# GOOGLE_CUSTOM_SEARCH_API_KEY=your_google_api_key_here
 # GOOGLE_SEARCH_ENGINE_ID=c1234567890abcdef
 ```
 

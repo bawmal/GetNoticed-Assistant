@@ -120,7 +120,7 @@ If any are missing, re-run the SQL script.
    ```env
    VITE_SUPABASE_URL=https://your-project-id.supabase.co
    VITE_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
-   VITE_GEMINI_API_KEY=AIzaSyD...
+   VITE_GEMINI_API_KEY=your_gemini_api_key_here
    ```
 
 4. **Save the file**
