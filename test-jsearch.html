@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JSearch API Test</title>
+  <style>
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+      background: #f5f5f5;
+    }
+    .container {
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    h1 {
+      color: #333;
+      margin-bottom: 10px;
+    }
+    .subtitle {
+      color: #666;
+      margin-bottom: 30px;
+    }
+    .input-group {
+      margin-bottom: 20px;
+    }
+    label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: #444;
+    }
+    input {
+      width: 100%;
+      padding: 12px;
+      border: 2px solid #e0e0e0;
+      border-radius: 8px;
+      font-size: 14px;
+      box-sizing: border-box;
+    }
+    input:focus {
+      outline: none;
+      border-color: #4CAF50;
+    }
+    button {
+      background: #4CAF50;
+      color: white;
+      border: none;
+      padding: 14px 28px;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    button:hover {
+      background: #45a049;
+    }
+    button:disabled {
+      background: #ccc;
+      cursor: not-allowed;
+    }
+    .status {
+      margin-top: 20px;
+      padding: 15px;
+      border-radius: 8px;
+      font-size: 14px;
+    }
+    .status.loading {
+      background: #e3f2fd;
+      color: #1976d2;
+    }
+    .status.success {
+      background: #e8f5e9;
+      color: #2e7d32;
+    }
+    .status.error {
+      background: #ffebee;
+      color: #c62828;
+    }
+    .jobs {
+      margin-top: 30px;
+    }
+    .job-card {
+      background: #fafafa;
+      padding: 20px;
+      border-radius: 8px;
+      margin-bottom: 15px;
+      border-left: 4px solid #4CAF50;
+    }
+    .job-title {
+      font-size: 18px;
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 8px;
+    }
+    .job-company {
+      color: #666;
+      margin-bottom: 8px;
+    }
+    .job-meta {
+      display: flex;
+      gap: 15px;
+      font-size: 13px;
+      color: #888;
+      margin-bottom: 10px;
+    }
+    .job-source {
+      display: inline-block;
+      background: #e0e0e0;
+      padding: 4px 10px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+      margin-top: 20px;
+    }
+    .stat-card {
+      background: #f5f5f5;
+      padding: 15px;
+      border-radius: 8px;
+      text-align: center;
+    }
+    .stat-value {
+      font-size: 32px;
+      font-weight: bold;
+      color: #4CAF50;
+    }
+    .stat-label {
+      font-size: 12px;
+      color: #666;
+      text-transform: uppercase;
+      margin-top: 5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🔍 JSearch API Test</h1>
+    <p class="subtitle">Test your JSearch API integration</p>
+
+    <div class="input-group">
+      <label for="apiKey">API Key</label>
+      <input type="password" id="apiKey" placeholder="Enter your JSearch API key from RapidAPI">
+    </div>
+
+    <div class="input-group">
+      <label for="keywords">Keywords (comma-separated)</label>
+      <input type="text" id="keywords" value="product manager" placeholder="e.g., software engineer, product manager">
+    </div>
+
+    <div class="input-group">
+      <label for="location">Location</label>
+      <input type="text" id="location" value="Remote" placeholder="e.g., Remote, San Francisco, New York">
+    </div>
+
+    <button id="testBtn" onclick="testAPI()">🚀 Test API</button>
+
+    <div id="status"></div>
+    <div id="results"></div>
+  </div>
+
+  <script>
+    async function testAPI() {
+      const apiKey = document.getElementById('apiKey').value.trim()
+      const keywords = document.getElementById('keywords').value.trim()
+      const location = document.getElementById('location').value.trim()
+      const statusDiv = document.getElementById('status')
+      const resultsDiv = document.getElementById('results')
+      const testBtn = document.getElementById('testBtn')
+
+      if (!apiKey) {
+        statusDiv.innerHTML = '<div class="status error">❌ Please enter your API key</div>'
+        return
+      }
+
+      testBtn.disabled = true
+      statusDiv.innerHTML = '<div class="status loading">⏳ Fetching jobs from JSearch API...</div>'
+      resultsDiv.innerHTML = ''
+
+      try {
+        const params = new URLSearchParams({
+          query: keywords,
+          page: '1',
+          num_pages: '1',
+          date_posted: 'week'
+        })
+
+        if (location && location.toLowerCase() !== 'remote') {
+          params.append('location', location)
+        }
+
+        const url = `https://jsearch.p.rapidapi.com/search?${params.toString()}`
+
+        const response = await fetch(url, {
+          method: 'GET',
+          headers: {
+            'X-RapidAPI-Key': apiKey,
+            'X-RapidAPI-Host': 'jsearch.p.rapidapi.com'
+          }
+        })
+
+        if (!response.ok) {
+          throw new Error(`API Error: ${response.status} ${response.statusText}`)
+        }
+
+        const data = await response.json()
+
+        if (!data.data || data.data.length === 0) {
+          statusDiv.innerHTML = '<div class="status error">⚠️ No jobs found. Try different keywords or location.</div>'
+          testBtn.disabled = false
+          return
+        }
+
+        // Show success status
+        const sources = [...new Set(data.data.map(j => j.job_publisher))]
+        statusDiv.innerHTML = `
+          <div class="status success">
+            ✅ Successfully fetched ${data.data.length} jobs!
+            <div class="stats">
+              <div class="stat-card">
+                <div class="stat-value">${data.data.length}</div>
+                <div class="stat-label">Jobs Found</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-value">${sources.length}</div>
+                <div class="stat-label">Sources</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-value">${data.data.filter(j => j.job_is_remote).length}</div>
+                <div class="stat-label">Remote Jobs</div>
+              </div>
+            </div>
+          </div>
+        `
+
+        // Display jobs
+        const jobsHTML = data.data.map(job => `
+          <div class="job-card">
+            <div class="job-title">${job.job_title}</div>
+            <div class="job-company">${job.employer_name}</div>
+            <div class="job-meta">
+              <span>📍 ${job.job_city || job.job_country || 'Location not specified'}</span>
+              ${job.job_is_remote ? '<span>🏠 Remote</span>' : ''}
+              ${job.job_employment_type ? `<span>💼 ${job.job_employment_type}</span>` : ''}
+            </div>
+            <span class="job-source">Source: ${job.job_publisher}</span>
+          </div>
+        `).join('')
+
+        resultsDiv.innerHTML = `
+          <div class="jobs">
+            <h2>📋 Job Results</h2>
+            ${jobsHTML}
+          </div>
+        `
+
+        testBtn.disabled = false
+
+      } catch (error) {
+        statusDiv.innerHTML = `<div class="status error">❌ Error: ${error.message}</div>`
+        testBtn.disabled = false
+      }
+    }
+  </script>
+</body>
+</html>

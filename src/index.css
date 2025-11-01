@@ -1,0 +1,122 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-gray-50 text-gray-900 font-sans antialiased;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display;
+  }
+}
+
+@layer components {
+  /* Primary Buttons - Modern SaaS (Vibrant Blue) */
+  .btn-primary {
+    @apply bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-medium px-6 py-3 rounded-lg transition-all duration-200 shadow-lg shadow-blue-500/25 hover:shadow-blue-500/40 transform hover:scale-[1.02] flex items-center justify-center gap-2;
+  }
+  
+  .btn-primary-small {
+    @apply bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-medium py-2 px-4 rounded-md transition-all duration-200 shadow-md shadow-blue-500/20;
+  }
+  
+  /* Secondary Buttons - Modern Outline */
+  .btn-secondary {
+    @apply bg-white border border-gray-300 hover:border-blue-400 hover:bg-blue-50 text-gray-700 hover:text-blue-700 font-medium px-6 py-3 rounded-lg transition-all duration-200;
+  }
+  
+  .btn-secondary-small {
+    @apply bg-white border border-gray-300 hover:border-blue-400 hover:bg-blue-50 text-gray-700 hover:text-blue-700 font-medium py-2 px-4 rounded-md transition-all duration-200;
+  }
+  
+  /* Outline Buttons */
+  .btn-outline {
+    @apply bg-white hover:bg-gray-50 text-gray-700 font-medium px-6 py-3 rounded-lg border border-gray-200 hover:border-primary-300 hover:shadow-md transition-all duration-200;
+  }
+  
+  /* Success Buttons - Green */
+  .btn-success {
+    @apply bg-gradient-to-r from-emerald-500 to-green-500 text-white font-medium px-6 py-3 rounded-lg shadow-lg shadow-emerald-500/25 hover:shadow-emerald-500/40 transition-all duration-200 transform hover:scale-[1.02];
+  }
+  
+  /* Warning Buttons - Orange/Red */
+  .btn-warning {
+    @apply bg-gradient-to-r from-orange-500 to-red-500 text-white font-medium px-6 py-3 rounded-lg shadow-lg shadow-orange-500/25 hover:shadow-orange-500/40 transition-all duration-200 transform hover:scale-[1.02];
+  }
+  
+  /* Cards - Modern SaaS Style */
+  .card {
+    @apply bg-white rounded-xl border border-gray-200 p-6 shadow-sm hover:shadow-md transition-all duration-300;
+  }
+  
+  .card-modern {
+    @apply bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl p-6 border border-blue-100 shadow-sm hover:shadow-md transition-all duration-300;
+  }
+  
+  .card-highlight {
+    @apply bg-white rounded-xl border-2 border-blue-200 p-6 shadow-lg shadow-blue-500/10 transition-all duration-300;
+  }
+  
+  .card-success {
+    @apply bg-gradient-to-br from-emerald-50 to-green-50 rounded-xl p-6 border border-emerald-100 shadow-sm transition-all duration-300;
+  }
+  
+  /* Form Elements */
+  .input-field {
+    @apply w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-200;
+  }
+  
+  .label {
+    @apply block text-sm font-medium text-gray-700 mb-2;
+  }
+  
+  /* Badges */
+  .badge-primary {
+    @apply inline-flex items-center px-3 py-1.5 text-xs font-semibold bg-gradient-to-r from-primary-500 to-primary-600 text-white rounded-full shadow-lg shadow-primary-500/25;
+  }
+  
+  .badge-secondary {
+    @apply inline-flex items-center px-3 py-1.5 text-xs font-medium bg-gradient-to-r from-accent-100 to-accent-200 text-accent-700 rounded-full border border-accent-200/50;
+  }
+  
+  .badge-success {
+    @apply inline-flex items-center px-3 py-1.5 text-xs font-semibold bg-gradient-to-r from-emerald-500 to-green-500 text-white rounded-full shadow-lg shadow-green-500/25;
+  }
+  
+  .badge-warning {
+    @apply inline-flex items-center px-3 py-1.5 text-xs font-bold bg-gradient-to-r from-orange-400 to-red-400 text-white rounded-full shadow-lg shadow-orange-500/30 animate-pulse;
+  }
+}
+
+@layer utilities {
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes gradient {
+    0%, 100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+
+  .animate-fade-in {
+    animation: fade-in 0.8s ease-out forwards;
+  }
+
+  .animate-gradient {
+    background-size: 200% 200%;
+    animation: gradient 3s ease infinite;
+  }
+}

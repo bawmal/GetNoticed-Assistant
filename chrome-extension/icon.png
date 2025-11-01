@@ -1,0 +1,590 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="profile" href="https://gmpg.org/xfn/11">
+
+	<meta name='robots' content='noindex, follow' />
+	<style>img:is([sizes="auto" i], [sizes^="auto," i]) { contain-intrinsic-size: 3000px 1500px }</style>
+	
+	<!-- This site is optimized with the Yoast SEO plugin v26.1.1 - https://yoast.com/wordpress/plugins/seo/ -->
+	<title>Page not found - Get Noticed</title>
+	<meta property="og:locale" content="en_US" />
+	<meta property="og:title" content="Page not found - Get Noticed" />
+	<meta property="og:site_name" content="Get Noticed" />
+	<script type="application/ld+json" class="yoast-schema-graph">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://getnoticed.ca/#website","url":"https://getnoticed.ca/","name":"Get Noticed","description":"Your Journey to Personal Growth &amp; Financial Security","publisher":{"@id":"https://getnoticed.ca/#organization"},"potentialAction":[{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://getnoticed.ca/?s={search_term_string}"},"query-input":{"@type":"PropertyValueSpecification","valueRequired":true,"valueName":"search_term_string"}}],"inLanguage":"en"},{"@type":"Organization","@id":"https://getnoticed.ca/#organization","name":"Get Noticed","url":"https://getnoticed.ca/","logo":{"@type":"ImageObject","inLanguage":"en","@id":"https://getnoticed.ca/#/schema/logo/image/","url":"https://getnoticed.ca/wp-content/uploads/2025/02/tag-sticker.png","contentUrl":"https://getnoticed.ca/wp-content/uploads/2025/02/tag-sticker.png","width":1000,"height":404,"caption":"Get Noticed"},"image":{"@id":"https://getnoticed.ca/#/schema/logo/image/"},"sameAs":["https://www.facebook.com/getnoticedca","https://x.com/getnoticedca"]}]}</script>
+	<!-- / Yoast SEO plugin. -->
+
+
+<link rel="alternate" type="application/rss+xml" title="Get Noticed &raquo; Feed" href="https://getnoticed.ca/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Get Noticed &raquo; Comments Feed" href="https://getnoticed.ca/comments/feed/" />
+<script>
+window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/16.0.1\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/16.0.1\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/getnoticed.ca\/wp-includes\/js\/wp-emoji-release.min.js?ver=6.8.3"}};
+/*! This file is auto-generated */
+!function(s,n){var o,i,e;function c(e){try{var t={supportTests:e,timestamp:(new Date).valueOf()};sessionStorage.setItem(o,JSON.stringify(t))}catch(e){}}function p(e,t,n){e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(t,0,0);var t=new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data),a=(e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(n,0,0),new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data));return t.every(function(e,t){return e===a[t]})}function u(e,t){e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(t,0,0);for(var n=e.getImageData(16,16,1,1),a=0;a<n.data.length;a++)if(0!==n.data[a])return!1;return!0}function f(e,t,n,a){switch(t){case"flag":return n(e,"\ud83c\udff3\ufe0f\u200d\u26a7\ufe0f","\ud83c\udff3\ufe0f\u200b\u26a7\ufe0f")?!1:!n(e,"\ud83c\udde8\ud83c\uddf6","\ud83c\udde8\u200b\ud83c\uddf6")&&!n(e,"\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc65\udb40\udc6e\udb40\udc67\udb40\udc7f","\ud83c\udff4\u200b\udb40\udc67\u200b\udb40\udc62\u200b\udb40\udc65\u200b\udb40\udc6e\u200b\udb40\udc67\u200b\udb40\udc7f");case"emoji":return!a(e,"\ud83e\udedf")}return!1}function g(e,t,n,a){var r="undefined"!=typeof WorkerGlobalScope&&self instanceof WorkerGlobalScope?new OffscreenCanvas(300,150):s.createElement("canvas"),o=r.getContext("2d",{willReadFrequently:!0}),i=(o.textBaseline="top",o.font="600 32px Arial",{});return e.forEach(function(e){i[e]=t(o,e,n,a)}),i}function t(e){var t=s.createElement("script");t.src=e,t.defer=!0,s.head.appendChild(t)}"undefined"!=typeof Promise&&(o="wpEmojiSettingsSupports",i=["flag","emoji"],n.supports={everything:!0,everythingExceptFlag:!0},e=new Promise(function(e){s.addEventListener("DOMContentLoaded",e,{once:!0})}),new Promise(function(t){var n=function(){try{var e=JSON.parse(sessionStorage.getItem(o));if("object"==typeof e&&"number"==typeof e.timestamp&&(new Date).valueOf()<e.timestamp+604800&&"object"==typeof e.supportTests)return e.supportTests}catch(e){}return null}();if(!n){if("undefined"!=typeof Worker&&"undefined"!=typeof OffscreenCanvas&&"undefined"!=typeof URL&&URL.createObjectURL&&"undefined"!=typeof Blob)try{var e="postMessage("+g.toString()+"("+[JSON.stringify(i),f.toString(),p.toString(),u.toString()].join(",")+"));",a=new Blob([e],{type:"text/javascript"}),r=new Worker(URL.createObjectURL(a),{name:"wpTestEmojiSupports"});return void(r.onmessage=function(e){c(n=e.data),r.terminate(),t(n)})}catch(e){}c(n=g(i,f,p,u))}t(n)}).then(function(e){for(var t in e)n.supports[t]=e[t],n.supports.everything=n.supports.everything&&n.supports[t],"flag"!==t&&(n.supports.everythingExceptFlag=n.supports.everythingExceptFlag&&n.supports[t]);n.supports.everythingExceptFlag=n.supports.everythingExceptFlag&&!n.supports.flag,n.DOMReady=!1,n.readyCallback=function(){n.DOMReady=!0}}).then(function(){return e}).then(function(){var e;n.supports.everything||(n.readyCallback(),(e=n.source||{}).concatemoji?t(e.concatemoji):e.wpemoji&&e.twemoji&&(t(e.twemoji),t(e.wpemoji)))}))}((window,document),window._wpemojiSettings);
+</script>
+<style id='wp-emoji-styles-inline-css'>
+
+	img.wp-smiley, img.emoji {
+		display: inline !important;
+		border: none !important;
+		box-shadow: none !important;
+		height: 1em !important;
+		width: 1em !important;
+		margin: 0 0.07em !important;
+		vertical-align: -0.1em !important;
+		background: none !important;
+		padding: 0 !important;
+	}
+</style>
+<link rel='stylesheet' id='wp-block-library-css' href='https://getnoticed.ca/wp-includes/css/dist/block-library/style.min.css?ver=6.8.3' media='all' />
+<style id='classic-theme-styles-inline-css'>
+/*! This file is auto-generated */
+.wp-block-button__link{color:#fff;background-color:#32373c;border-radius:9999px;box-shadow:none;text-decoration:none;padding:calc(.667em + 2px) calc(1.333em + 2px);font-size:1.125em}.wp-block-file__button{background:#32373c;color:#fff;text-decoration:none}
+</style>
+<link rel='stylesheet' id='me-spr-block-styles-css' href='https://getnoticed.ca/wp-content/plugins/simple-post-redirect//css/block-styles.min.css?ver=6.8.3' media='all' />
+<link rel='stylesheet' id='ez-toc-css' href='https://getnoticed.ca/wp-content/plugins/easy-table-of-contents/assets/css/screen.min.css?ver=2.0.76' media='all' />
+<style id='ez-toc-inline-css'>
+div#ez-toc-container .ez-toc-title {font-size: 120%;}div#ez-toc-container .ez-toc-title {font-weight: 500;}div#ez-toc-container ul li , div#ez-toc-container ul li a {font-size: 95%;}div#ez-toc-container ul li , div#ez-toc-container ul li a {font-weight: 500;}div#ez-toc-container nav ul ul li {font-size: 90%;}
+.ez-toc-container-direction {direction: ltr;}.ez-toc-counter ul{counter-reset: item ;}.ez-toc-counter nav ul li a::before {content: counters(item, '.', decimal) '. ';display: inline-block;counter-increment: item;flex-grow: 0;flex-shrink: 0;margin-right: .2em; float: left; }.ez-toc-widget-direction {direction: ltr;}.ez-toc-widget-container ul{counter-reset: item ;}.ez-toc-widget-container nav ul li a::before {content: counters(item, '.', decimal) '. ';display: inline-block;counter-increment: item;flex-grow: 0;flex-shrink: 0;margin-right: .2em; float: left; }
+</style>
+<link rel='stylesheet' id='elementor-icons-css' href='https://getnoticed.ca/wp-content/plugins/elementor/assets/lib/eicons/css/elementor-icons.min.css?ver=5.44.0' media='all' />
+<link rel='stylesheet' id='elementor-frontend-css' href='https://getnoticed.ca/wp-content/plugins/elementor/assets/css/frontend.min.css?ver=3.32.4' media='all' />
+<link rel='stylesheet' id='elementor-post-459-css' href='https://getnoticed.ca/wp-content/uploads/elementor/css/post-459.css?ver=1760587813' media='all' />
+<link rel='stylesheet' id='uicore_global-css' href='https://getnoticed.ca/wp-content/uploads/uicore-global.css?ver=9368' media='all' />
+<link rel='stylesheet' id='bdt-uikit-css' href='https://getnoticed.ca/wp-content/plugins/bdthemes-element-pack/assets/css/bdt-uikit.css?ver=3.21.7' media='all' />
+<link rel='stylesheet' id='ep-helper-css' href='https://getnoticed.ca/wp-content/plugins/bdthemes-element-pack/assets/css/ep-helper.css?ver=7.18.14' media='all' />
+<link rel='stylesheet' id='elementor-gf-local-inter-css' href='https://getnoticed.ca/wp-content/uploads/elementor/google-fonts/css/inter.css?ver=1742261591' media='all' />
+<link rel='stylesheet' id='elementor-gf-local-ptserif-css' href='https://getnoticed.ca/wp-content/uploads/elementor/google-fonts/css/ptserif.css?ver=1742261583' media='all' />
+<link rel='stylesheet' id='elementor-icons-shared-0-css' href='https://getnoticed.ca/wp-content/plugins/elementor/assets/lib/font-awesome/css/fontawesome.min.css?ver=5.15.3' media='all' />
+<link rel='stylesheet' id='elementor-icons-fa-brands-css' href='https://getnoticed.ca/wp-content/plugins/elementor/assets/lib/font-awesome/css/brands.min.css?ver=5.15.3' media='all' />
+<script src="https://getnoticed.ca/wp-includes/js/jquery/jquery.min.js?ver=3.7.1" id="jquery-core-js"></script>
+<script src="https://getnoticed.ca/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.4.1" id="jquery-migrate-js"></script>
+<link rel="https://api.w.org/" href="https://getnoticed.ca/wp-json/" /><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://getnoticed.ca/xmlrpc.php?rsd" />
+<meta name="generator" content="WordPress 6.8.3" />
+<meta name="generator" content="Elementor 3.32.4; features: additional_custom_breakpoints; settings: css_print_method-external, google_font-enabled, font_display-swap">
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-TNB986MQ');</script>
+<!-- End Google Tag Manager -->
+
+<meta name="theme-color" content="#F2FF58" />
+        <link rel="shortcut icon" href="https://getnoticed.ca/wp-content/uploads/2025/02/Corporate-About-Us-Values-Icon-4.webp" >
+		<link rel="icon" href="https://getnoticed.ca/wp-content/uploads/2025/02/Corporate-About-Us-Values-Icon-4.webp" >
+		<link rel="apple-touch-icon" sizes="152x152" href="https://getnoticed.ca/wp-content/uploads/2025/02/Corporate-About-Us-Values-Icon-4.webp">
+		<link rel="apple-touch-icon" sizes="120x120" href="https://getnoticed.ca/wp-content/uploads/2025/02/Corporate-About-Us-Values-Icon-4.webp">
+		<link rel="apple-touch-icon" sizes="76x76" href="https://getnoticed.ca/wp-content/uploads/2025/02/Corporate-About-Us-Values-Icon-4.webp">
+        <link rel="apple-touch-icon" href="https://getnoticed.ca/wp-content/uploads/2025/02/Corporate-About-Us-Values-Icon-4.webp">
+        			<style>
+				.e-con.e-parent:nth-of-type(n+4):not(.e-lazyloaded):not(.e-no-lazyload),
+				.e-con.e-parent:nth-of-type(n+4):not(.e-lazyloaded):not(.e-no-lazyload) * {
+					background-image: none !important;
+				}
+				@media screen and (max-height: 1024px) {
+					.e-con.e-parent:nth-of-type(n+3):not(.e-lazyloaded):not(.e-no-lazyload),
+					.e-con.e-parent:nth-of-type(n+3):not(.e-lazyloaded):not(.e-no-lazyload) * {
+						background-image: none !important;
+					}
+				}
+				@media screen and (max-height: 640px) {
+					.e-con.e-parent:nth-of-type(n+2):not(.e-lazyloaded):not(.e-no-lazyload),
+					.e-con.e-parent:nth-of-type(n+2):not(.e-lazyloaded):not(.e-no-lazyload) * {
+						background-image: none !important;
+					}
+				}
+			</style>
+			<link rel="icon" href="https://getnoticed.ca/wp-content/uploads/2025/02/cropped-Corporate-About-Us-Values-Icon-4-32x32.webp" sizes="32x32" />
+<link rel="icon" href="https://getnoticed.ca/wp-content/uploads/2025/02/cropped-Corporate-About-Us-Values-Icon-4-192x192.webp" sizes="192x192" />
+<link rel="apple-touch-icon" href="https://getnoticed.ca/wp-content/uploads/2025/02/cropped-Corporate-About-Us-Values-Icon-4-180x180.webp" />
+<meta name="msapplication-TileImage" content="https://getnoticed.ca/wp-content/uploads/2025/02/cropped-Corporate-About-Us-Values-Icon-4-270x270.webp" />
+		<style id="wp-custom-css">
+			form select {
+    padding: 15px 15px !important;
+	  color: #757575 !important;
+    font-size: 16px !important;
+}
+
+b {
+  color: #f1ff59;
+}		</style>
+		        <style>
+            .uicore-animate-scroll {
+                animation-fill-mode: both;
+                animation-timing-function: linear;
+                animation-timeline: view(block);
+            }
+
+            .uicore-animate-hide {
+                opacity: 0;
+                visibility: hidden;
+            }
+        </style>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const supportsAnimationTimeline = CSS.supports("animation-timeline", "scroll()");
+
+                if (!supportsAnimationTimeline && document.querySelector('.uicore-animate-scroll')) {
+                    const script = document.createElement('script');
+                    script.src = "https://getnoticed.ca/wp-content/plugins/uicore-animate/assets/js/scroll-timeline.js";
+                    script.async = true;
+                    document.head.appendChild(script);
+                }
+            });
+        </script>
+
+</head>
+
+<body class="error404 wp-custom-logo wp-embed-responsive wp-theme-outgrid ui-a-dsmm-slide  elementor-default elementor-kit-471">
+		<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TNB986MQ"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<div class="uicore-animation-bg"></div><!-- Custom HTML - Page Options --><!-- 1.1 uicore_before_body_content -->	<div class="uicore-body-content">
+		<!-- 1.2 uicore_before_page_content -->		<div id="uicore-page">
+		
+        <div data-uils="header" data-uils-title="Header" id="wrapper-navbar" itemscope itemtype="http://schema.org/WebSite" class="uicore uicore-navbar uicore-section uicore-box uicore-h-classic uicore-sticky ui-smart-sticky "><div class="uicore-header-wrapper">
+            <nav class="uicore uicore-container">
+            		 <div class="uicore-branding " data-uils="header-branding" data-uils-title="Site Logo">
+                
+			<a href="https://getnoticed.ca/" rel="home">
+                <img fetchpriority="high" class="uicore uicore-logo uicore-main" src="https://getnoticed.ca/wp-content/uploads/2025/02/website-ogo.png" alt="Get Noticed" width="500" height="198"/>
+				<img class="uicore uicore-logo uicore-second" src="https://getnoticed.ca/wp-content/uploads/2025/02/website-ogo.png" alt="Get Noticed" width="500" height="198"/>
+				<img class="uicore uicore-logo uicore-mobile-main" src="https://getnoticed.ca/wp-content/uploads/2025/02/website-ogo.png" alt="Get Noticed" width="500" height="198"/>
+				<img loading="lazy" class="uicore uicore-logo uicore-mobile-second" src="https://getnoticed.ca/wp-content/uploads/2025/02/website-ogo.png" alt="Get Noticed" width="500" height="198"/>
+			</a>
+
+		        </div>
+		        <div class='uicore-nav-menu'>
+            <div class="uicore-menu-container uicore-nav"><ul data-uils="header-menu" data-uils-title="Navigation Menu" class="uicore-menu"><li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-461"><a href="https://getnoticed.ca/about-us/"><span class="ui-menu-item-wrapper">Company</span></a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-468"><a href="https://getnoticed.ca/university/"><span class="ui-menu-item-wrapper">University</span></a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-462"><a href="https://getnoticed.ca/services-2/"><span class="ui-menu-item-wrapper">Products &#038; Services</span></a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-469"><a href="#"><span class="ui-menu-item-wrapper">Resources</span></a>
+<ul class="sub-menu">
+	<li class="menu-item menu-item-type-post_type menu-item-object-page current_page_parent menu-item-464"><a href="https://getnoticed.ca/blog/"><span class="ui-menu-item-wrapper">Insights</span></a></li>
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-466"><a href="https://open.spotify.com/show/0fJBBjRY6Lp5axUZYdpiFt"><span class="ui-menu-item-wrapper">Podcast</span></a></li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-467"><a href="https://getnoticed.ca/university/members/"><span class="ui-menu-item-wrapper">Community</span></a></li>
+</ul></div><div class="uicore uicore-extra" data-uils="header_extra" data-uils-title="Header Extras">            <div class="uicore-cta-wrapper">
+				<a href="/contact"
+					target="_self"
+					class="uicore-btn "
+                    >
+                    <span class="elementor-button-text">
+						Contact                     </span>
+				</a>
+            </div>
+        </div>        </div>
+		<div class="uicore-mobile-head-right">            <div class="uicore-cta-wrapper">
+				<a href="/contact"
+					target="_self"
+					class="uicore-btn "
+                    >
+                    <span class="elementor-button-text">
+						Contact                     </span>
+				</a>
+            </div>
+                    <button type="button" class="uicore-toggle uicore-ham" aria-label="mobile-menu">
+                <span class="bars">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </span>
+            </button>
+        </div>            </nav>
+
+            </div>
+                    </div><!-- #wrapper-navbar end -->
+        <!-- 1.3 uicore_page -->			<div id="content" class="uicore-content">
+
+			<!-- 1.4 uicore_before_content -->
+	<div id="primary" class="content-area">
+		<main id="main" class="site-main">
+			<section class="utility-page">
+				<img src="https://getnoticed.ca/wp-content/themes/outgrid/assets/img/bg-404.png" alt="Page Not Found" class="error-404-img">
+				<h1>Error 404</h1>
+				<p>We can’t seem to find the page you’re looking for.</p>
+				<a class="default-button" href="https://getnoticed.ca">Go back to homepage</a>
+			</section><!-- .utility-page -->
+		</main><!-- #main -->
+	</div><!-- #primary -->
+
+	</div><!-- #content -->
+
+	            <footer id="uicore-tb-footer" itemscope="itemscope" itemtype="https://schema.org/WPFooter" >
+			    		<div data-elementor-type="uicore-tb" data-elementor-id="459" class="elementor elementor-459" data-elementor-settings="{&quot;element_pack_global_tooltip_width&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;element_pack_global_tooltip_width_tablet&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;element_pack_global_tooltip_width_mobile&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;element_pack_global_tooltip_padding&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;top&quot;:&quot;&quot;,&quot;right&quot;:&quot;&quot;,&quot;bottom&quot;:&quot;&quot;,&quot;left&quot;:&quot;&quot;,&quot;isLinked&quot;:true},&quot;element_pack_global_tooltip_padding_tablet&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;top&quot;:&quot;&quot;,&quot;right&quot;:&quot;&quot;,&quot;bottom&quot;:&quot;&quot;,&quot;left&quot;:&quot;&quot;,&quot;isLinked&quot;:true},&quot;element_pack_global_tooltip_padding_mobile&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;top&quot;:&quot;&quot;,&quot;right&quot;:&quot;&quot;,&quot;bottom&quot;:&quot;&quot;,&quot;left&quot;:&quot;&quot;,&quot;isLinked&quot;:true},&quot;element_pack_global_tooltip_border_radius&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;top&quot;:&quot;&quot;,&quot;right&quot;:&quot;&quot;,&quot;bottom&quot;:&quot;&quot;,&quot;left&quot;:&quot;&quot;,&quot;isLinked&quot;:true},&quot;element_pack_global_tooltip_border_radius_tablet&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;top&quot;:&quot;&quot;,&quot;right&quot;:&quot;&quot;,&quot;bottom&quot;:&quot;&quot;,&quot;left&quot;:&quot;&quot;,&quot;isLinked&quot;:true},&quot;element_pack_global_tooltip_border_radius_mobile&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;top&quot;:&quot;&quot;,&quot;right&quot;:&quot;&quot;,&quot;bottom&quot;:&quot;&quot;,&quot;left&quot;:&quot;&quot;,&quot;isLinked&quot;:true}}" data-elementor-post-type="uicore-tb">
+						<section class="elementor-section elementor-top-section elementor-element elementor-element-8193d5b elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="8193d5b" data-element_type="section">
+						<div class="elementor-container elementor-column-gap-default">
+					<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-d8381c9 animated-fast elementor-invisible" data-id="d8381c9" data-element_type="column" data-settings="{&quot;background_background&quot;:&quot;classic&quot;,&quot;animation&quot;:&quot;zoomOutUp&quot;,&quot;animation_delay&quot;:400}">
+			<div class="elementor-widget-wrap elementor-element-populated">
+						<div class="elementor-element elementor-element-a686bbf ui-e-a-animate elementor-widget elementor-widget-highlighted-text" data-id="a686bbf" data-element_type="widget" data-widget_type="highlighted-text.default">
+				<div class="elementor-widget-container">
+					        <h2 class="ui-e--highlighted-text">
+            <span class="ui-e-headline-text elementor-repeater-item-911f834">Collective Impact, </span><span class="ui-e-headline-text elementor-repeater-item-60922a8 ui-e-headline-color">
+									<span class="whitespace"></span>
+                                    <span>
+                                        <span class="ui-e-headline-text ui-e-headline-highlighted">Limitless Possibilities</span><span class="uicore-svg-wrapper"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 150" preserveAspectRatio="none"></svg></span></span> <span class="whitespace"> </span></span>        </h2>
+    				</div>
+				</div>
+				<div class="elementor-element elementor-element-f1756b1 elementor-widget__width-initial elementor-widget-tablet__width-initial elementor-widget-mobile__width-inherit elementor-widget elementor-widget-text-editor" data-id="f1756b1" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+									Together, we build wealth, create opportunities, and unlock endless possibilities through the power of community.								</div>
+				</div>
+				<div class="elementor-element elementor-element-62e4726 elementor-align-center elementor-widget elementor-widget-button" data-id="62e4726" data-element_type="widget" data-widget_type="button.default">
+				<div class="elementor-widget-container">
+									<div class="elementor-button-wrapper">
+					<a class="elementor-button elementor-button-link elementor-size-sm" href="/contact">
+						<span class="elementor-button-content-wrapper">
+									<span class="elementor-button-text">Collaborate with Us</span>
+					</span>
+					</a>
+				</div>
+								</div>
+				</div>
+					</div>
+		</div>
+					</div>
+		</section>
+				<div class="elementor-section elementor-top-section elementor-element elementor-element-e162369 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="e162369" data-element_type="section">
+						<div class="elementor-container elementor-column-gap-no">
+					<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-5e4c5ba" data-id="5e4c5ba" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+						<section class="elementor-section elementor-inner-section elementor-element elementor-element-22dff98 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="22dff98" data-element_type="section">
+						<div class="elementor-container elementor-column-gap-default">
+					<div class="elementor-column elementor-col-20 elementor-inner-column elementor-element elementor-element-8d39ca5" data-id="8d39ca5" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+						<div class="elementor-element elementor-element-468e017 elementor-widget elementor-widget-image" data-id="468e017" data-element_type="widget" data-widget_type="image.default">
+				<div class="elementor-widget-container">
+															<img loading="lazy" width="500" height="198" src="https://getnoticed.ca/wp-content/uploads/2025/02/website-ogo.png" class="attachment-full size-full wp-image-472" alt="" srcset="https://getnoticed.ca/wp-content/uploads/2025/02/website-ogo.png 500w, https://getnoticed.ca/wp-content/uploads/2025/02/website-ogo-300x119.png 300w" sizes="(max-width: 500px) 100vw, 500px" />															</div>
+				</div>
+				<div class="elementor-element elementor-element-6481cef elementor-mobile-align-center elementor-icon-list--layout-traditional elementor-list-item-link-full_width elementor-widget elementor-widget-icon-list" data-id="6481cef" data-element_type="widget" data-widget_type="icon-list.default">
+				<div class="elementor-widget-container">
+							<ul class="elementor-icon-list-items">
+							<li class="elementor-icon-list-item">
+											<a href="#">
+
+											<span class="elementor-icon-list-text">info@getnoticed.ca</span>
+											</a>
+									</li>
+								<li class="elementor-icon-list-item">
+											<a href="#">
+
+											<span class="elementor-icon-list-text">ON. Canada</span>
+											</a>
+									</li>
+						</ul>
+						</div>
+				</div>
+					</div>
+		</div>
+				<div class="elementor-column elementor-col-20 elementor-inner-column elementor-element elementor-element-93a2748" data-id="93a2748" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+						<div class="elementor-element elementor-element-23c7eab elementor-widget elementor-widget-heading" data-id="23c7eab" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+					<h6 class="elementor-heading-title elementor-size-default">Product</h6>				</div>
+				</div>
+				<div class="elementor-element elementor-element-96fa96c elementor-mobile-align-center elementor-icon-list--layout-traditional elementor-list-item-link-full_width elementor-widget elementor-widget-icon-list" data-id="96fa96c" data-element_type="widget" data-widget_type="icon-list.default">
+				<div class="elementor-widget-container">
+							<ul class="elementor-icon-list-items">
+							<li class="elementor-icon-list-item">
+											<a href="https://optisage.ai">
+
+											<span class="elementor-icon-list-text">optisage</span>
+											</a>
+									</li>
+								<li class="elementor-icon-list-item">
+											<a href="https://getnoticed.ca/university/">
+
+											<span class="elementor-icon-list-text">University</span>
+											</a>
+									</li>
+								<li class="elementor-icon-list-item">
+											<a href="https://getnoticed.ca/immigrant-career-platform/">
+
+											<span class="elementor-icon-list-text">Mentorship</span>
+											</a>
+									</li>
+						</ul>
+						</div>
+				</div>
+					</div>
+		</div>
+				<div class="elementor-column elementor-col-20 elementor-inner-column elementor-element elementor-element-9e616a1" data-id="9e616a1" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+						<div class="elementor-element elementor-element-728b4f3 elementor-widget elementor-widget-heading" data-id="728b4f3" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+					<h6 class="elementor-heading-title elementor-size-default">Company</h6>				</div>
+				</div>
+				<div class="elementor-element elementor-element-942ac2f elementor-mobile-align-center elementor-icon-list--layout-traditional elementor-list-item-link-full_width elementor-widget elementor-widget-icon-list" data-id="942ac2f" data-element_type="widget" data-widget_type="icon-list.default">
+				<div class="elementor-widget-container">
+							<ul class="elementor-icon-list-items">
+							<li class="elementor-icon-list-item">
+											<a href="https://getnoticed.ca/about-us/">
+
+											<span class="elementor-icon-list-text">About Us</span>
+											</a>
+									</li>
+						</ul>
+						</div>
+				</div>
+					</div>
+		</div>
+				<div class="elementor-column elementor-col-20 elementor-inner-column elementor-element elementor-element-5a5fcfe" data-id="5a5fcfe" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+						<div class="elementor-element elementor-element-1fe519a elementor-widget elementor-widget-heading" data-id="1fe519a" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+					<h6 class="elementor-heading-title elementor-size-default">Collaborate</h6>				</div>
+				</div>
+				<div class="elementor-element elementor-element-e1d69b4 elementor-mobile-align-center elementor-icon-list--layout-traditional elementor-list-item-link-full_width elementor-widget elementor-widget-icon-list" data-id="e1d69b4" data-element_type="widget" data-widget_type="icon-list.default">
+				<div class="elementor-widget-container">
+							<ul class="elementor-icon-list-items">
+							<li class="elementor-icon-list-item">
+											<a href="https://getnoticed.ca/university/members/">
+
+											<span class="elementor-icon-list-text">Community</span>
+											</a>
+									</li>
+								<li class="elementor-icon-list-item">
+											<a href="https://getnoticed.ca/immigrant-career-platform/">
+
+											<span class="elementor-icon-list-text">Become a Mentor</span>
+											</a>
+									</li>
+								<li class="elementor-icon-list-item">
+											<a href="https://getnoticed.ca/immigrant-career-platform/">
+
+											<span class="elementor-icon-list-text">Become a Coach</span>
+											</a>
+									</li>
+						</ul>
+						</div>
+				</div>
+					</div>
+		</div>
+				<div class="elementor-column elementor-col-20 elementor-inner-column elementor-element elementor-element-40fd773" data-id="40fd773" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+						<div class="elementor-element elementor-element-60b54f5 elementor-widget elementor-widget-heading" data-id="60b54f5" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+					<h6 class="elementor-heading-title elementor-size-default">Resources</h6>				</div>
+				</div>
+				<div class="elementor-element elementor-element-3823010 elementor-mobile-align-center elementor-icon-list--layout-traditional elementor-list-item-link-full_width elementor-widget elementor-widget-icon-list" data-id="3823010" data-element_type="widget" data-widget_type="icon-list.default">
+				<div class="elementor-widget-container">
+							<ul class="elementor-icon-list-items">
+							<li class="elementor-icon-list-item">
+											<a href="https://getnoticed.ca/blog/">
+
+											<span class="elementor-icon-list-text">Insights</span>
+											</a>
+									</li>
+								<li class="elementor-icon-list-item">
+											<a href="https://getnoticed.ca/contact/">
+
+											<span class="elementor-icon-list-text">Support</span>
+											</a>
+									</li>
+						</ul>
+						</div>
+				</div>
+					</div>
+		</div>
+					</div>
+		</section>
+				<div class="elementor-section elementor-inner-section elementor-element elementor-element-411e3e1 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="411e3e1" data-element_type="section">
+						<div class="elementor-container elementor-column-gap-default">
+					<div class="elementor-column elementor-col-50 elementor-inner-column elementor-element elementor-element-7810982" data-id="7810982" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+						<div class="elementor-element elementor-element-7f39333 elementor-icon-list--layout-inline elementor-tablet-align-center elementor-list-item-link-full_width elementor-widget elementor-widget-icon-list" data-id="7f39333" data-element_type="widget" data-widget_type="icon-list.default">
+				<div class="elementor-widget-container">
+							<ul class="elementor-icon-list-items elementor-inline-items">
+							<li class="elementor-icon-list-item elementor-inline-item">
+											<a href="https://www.linkedin.com/company/100184848/admin/dashboard/">
+
+												<span class="elementor-icon-list-icon">
+							<i aria-hidden="true" class="fab fa-linkedin-in"></i>						</span>
+										<span class="elementor-icon-list-text"></span>
+											</a>
+									</li>
+						</ul>
+						</div>
+				</div>
+					</div>
+		</div>
+				<div class="elementor-column elementor-col-50 elementor-inner-column elementor-element elementor-element-c9c495d" data-id="c9c495d" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+						<div class="elementor-element elementor-element-8a842e5 elementor-icon-list--layout-inline elementor-align-right elementor-tablet-align-center elementor-list-item-link-full_width elementor-widget elementor-widget-icon-list" data-id="8a842e5" data-element_type="widget" data-widget_type="icon-list.default">
+				<div class="elementor-widget-container">
+							<ul class="elementor-icon-list-items elementor-inline-items">
+							<li class="elementor-icon-list-item elementor-inline-item">
+											<a href="https://themeforest.net/user/uicore/portfolio">
+
+											<span class="elementor-icon-list-text">© GetNoticed 2025. All Rights Reserved.</span>
+											</a>
+									</li>
+								<li class="elementor-icon-list-item elementor-inline-item">
+											<a href="/terms">
+
+											<span class="elementor-icon-list-text">Terms</span>
+											</a>
+									</li>
+								<li class="elementor-icon-list-item elementor-inline-item">
+											<a href="/privacy-policy">
+
+											<span class="elementor-icon-list-text">Privacy Policy</span>
+											</a>
+									</li>
+						</ul>
+						</div>
+				</div>
+				<div class="elementor-element elementor-element-e019e43 elementor-icon-list--layout-inline elementor-align-right elementor-tablet-align-center elementor-list-item-link-full_width elementor-widget elementor-widget-icon-list" data-id="e019e43" data-element_type="widget" data-widget_type="icon-list.default">
+				<div class="elementor-widget-container">
+							<ul class="elementor-icon-list-items elementor-inline-items">
+							<li class="elementor-icon-list-item elementor-inline-item">
+											<a href="#">
+
+											<span class="elementor-icon-list-text">GetNoticed Hub Inc. is registered in Canada <br>Corporation Number: 1533977-4</span>
+											</a>
+									</li>
+						</ul>
+						</div>
+				</div>
+					</div>
+		</div>
+					</div>
+		</div>
+					</div>
+		</div>
+					</div>
+		</div>
+				</div>
+				    </footer>
+            <!-- 1.5 uicore_content_end -->
+</div><!-- #page -->
+
+<div id="uicore-back-to-top" class="uicore-back-to-top uicore-i-arrow uicore_hide_mobile "></div>        <div class="uicore-navigation-wrapper uicore-navbar uicore-section uicore-box uicore-mobile-menu-wrapper
+                ">
+			<nav class="uicore uicore-container">
+				<div class="uicore-branding uicore-mobile">
+                                            <a href="https://getnoticed.ca/" rel="home">
+                            <img class="uicore uicore-logo"  src="https://getnoticed.ca/wp-content/uploads/2025/02/website-ogo.png" alt="Get Noticed"/>
+                        </a>
+                    				</div>
+
+
+                <div class="uicore-branding uicore-desktop">
+                    				</div>
+
+
+
+                <div class="uicore-mobile-head-right">
+                    
+
+                    <button type="button" class="uicore-toggle uicore-ham" aria-label="mobile-menu">
+                        <span class="bars">
+                            <span class="bar"></span>
+                            <span class="bar"></span>
+                            <span class="bar"></span>
+                        </span>
+                    </button>
+                </div>
+			</nav>
+			<div class="uicore-navigation-content">
+                <div class="uicore-menu-container uicore-nav"><ul data-uils="header-menu" data-uils-title="Navigation Menu" class="uicore-menu"><li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-461"><a href="https://getnoticed.ca/about-us/"><span class="ui-menu-item-wrapper">Company</span></a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-468"><a href="https://getnoticed.ca/university/"><span class="ui-menu-item-wrapper">University</span></a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-462"><a href="https://getnoticed.ca/services-2/"><span class="ui-menu-item-wrapper">Products &#038; Services</span></a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-469"><a href="#"><span class="ui-menu-item-wrapper">Resources</span></a>
+<ul class="sub-menu">
+	<li class="menu-item menu-item-type-post_type menu-item-object-page current_page_parent menu-item-464"><a href="https://getnoticed.ca/blog/"><span class="ui-menu-item-wrapper">Insights</span></a></li>
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-466"><a href="https://open.spotify.com/show/0fJBBjRY6Lp5axUZYdpiFt"><span class="ui-menu-item-wrapper">Podcast</span></a></li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-467"><a href="https://getnoticed.ca/university/members/"><span class="ui-menu-item-wrapper">Community</span></a></li>
+</ul></div><div class="uicore uicore-extra" data-uils="header_extra" data-uils-title="Header Extras">            <div class="uicore-cta-wrapper">
+				<a href="/contact"
+					target="_self"
+					class="uicore-btn "
+                    >
+                    <span class="elementor-button-text">
+						Contact                     </span>
+				</a>
+            </div>
+        </div>            </div>
+		</div>
+		<!-- 1.6 uicore_body_end --></div>
+<!-- 1.7 uicore_after_body_content --><script> 
+var uicore_frontend = {'back':'Back', 'rtl' : '','mobile_br' : '1025'};
+ console.log( 'Using Outgrid v.2.0.4');
+ console.log( 'Powered By UiCore Framework v.6.0.4');
+ </script> <script type="speculationrules">
+{"prefetch":[{"source":"document","where":{"and":[{"href_matches":"\/*"},{"not":{"href_matches":["\/wp-*.php","\/wp-admin\/*","\/wp-content\/uploads\/*","\/wp-content\/*","\/wp-content\/plugins\/*","\/wp-content\/themes\/outgrid\/*","\/*\\?(.+)"]}},{"not":{"selector_matches":"a[rel~=\"nofollow\"]"}},{"not":{"selector_matches":".no-prefetch, .no-prefetch a"}}]},"eagerness":"conservative"}]}
+</script>
+			<script>
+				const lazyloadRunObserver = () => {
+					const lazyloadBackgrounds = document.querySelectorAll( `.e-con.e-parent:not(.e-lazyloaded)` );
+					const lazyloadBackgroundObserver = new IntersectionObserver( ( entries ) => {
+						entries.forEach( ( entry ) => {
+							if ( entry.isIntersecting ) {
+								let lazyloadBackground = entry.target;
+								if( lazyloadBackground ) {
+									lazyloadBackground.classList.add( 'e-lazyloaded' );
+								}
+								lazyloadBackgroundObserver.unobserve( entry.target );
+							}
+						});
+					}, { rootMargin: '200px 0px 200px 0px' } );
+					lazyloadBackgrounds.forEach( ( lazyloadBackground ) => {
+						lazyloadBackgroundObserver.observe( lazyloadBackground );
+					} );
+				};
+				const events = [
+					'DOMContentLoaded',
+					'elementor/lazyload/observe',
+				];
+				events.forEach( ( event ) => {
+					document.addEventListener( event, lazyloadRunObserver );
+				} );
+			</script>
+			<link rel='stylesheet' id='widget-icon-list-css' href='https://getnoticed.ca/wp-content/plugins/elementor/assets/css/widget-icon-list.min.css?ver=3.32.4' media='all' />
+<link rel='stylesheet' id='ui-e-highlighted-text-css' href='https://getnoticed.ca/wp-content/plugins/uicore-elements/assets/css/elements/highlighted-text.css?ver=1.3.7' media='all' />
+<script id="ez-toc-scroll-scriptjs-js-extra">
+var eztoc_smooth_local = {"scroll_offset":"30","add_request_uri":"","add_self_reference_link":""};
+</script>
+<script src="https://getnoticed.ca/wp-content/plugins/easy-table-of-contents/assets/js/smooth_scroll.min.js?ver=2.0.76" id="ez-toc-scroll-scriptjs-js"></script>
+<script src="https://getnoticed.ca/wp-content/plugins/easy-table-of-contents/vendor/js-cookie/js.cookie.min.js?ver=2.2.1" id="ez-toc-js-cookie-js"></script>
+<script src="https://getnoticed.ca/wp-content/plugins/easy-table-of-contents/vendor/sticky-kit/jquery.sticky-kit.min.js?ver=1.9.2" id="ez-toc-jquery-sticky-kit-js"></script>
+<script id="ez-toc-js-js-extra">
+var ezTOC = {"smooth_scroll":"1","visibility_hide_by_default":"","scroll_offset":"30","fallbackIcon":"<span class=\"\"><span class=\"eztoc-hide\" style=\"display:none;\">Toggle<\/span><span class=\"ez-toc-icon-toggle-span\"><svg style=\"fill: #999;color:#999\" xmlns=\"http:\/\/www.w3.org\/2000\/svg\" class=\"list-377408\" width=\"20px\" height=\"20px\" viewBox=\"0 0 24 24\" fill=\"none\"><path d=\"M6 6H4v2h2V6zm14 0H8v2h12V6zM4 11h2v2H4v-2zm16 0H8v2h12v-2zM4 16h2v2H4v-2zm16 0H8v2h12v-2z\" fill=\"currentColor\"><\/path><\/svg><svg style=\"fill: #999;color:#999\" class=\"arrow-unsorted-368013\" xmlns=\"http:\/\/www.w3.org\/2000\/svg\" width=\"10px\" height=\"10px\" viewBox=\"0 0 24 24\" version=\"1.2\" baseProfile=\"tiny\"><path d=\"M18.2 9.3l-6.2-6.3-6.2 6.3c-.2.2-.3.4-.3.7s.1.5.3.7c.2.2.4.3.7.3h11c.3 0 .5-.1.7-.3.2-.2.3-.5.3-.7s-.1-.5-.3-.7zM5.8 14.7l6.2 6.3 6.2-6.3c.2-.2.3-.5.3-.7s-.1-.5-.3-.7c-.2-.2-.4-.3-.7-.3h-11c-.3 0-.5.1-.7.3-.2.2-.3.5-.3.7s.1.5.3.7z\"\/><\/svg><\/span><\/span>","chamomile_theme_is_on":""};
+</script>
+<script src="https://getnoticed.ca/wp-content/plugins/easy-table-of-contents/assets/js/front.min.js?ver=2.0.76-1755705208" id="ez-toc-js-js"></script>
+<script src="https://getnoticed.ca/wp-content/uploads/uicore-global.js?ver=9368" id="uicore_global-js"></script>
+<script id="bdt-uikit-js-extra">
+var element_pack_ajax_login_config = {"ajaxurl":"https:\/\/getnoticed.ca\/wp-admin\/admin-ajax.php","language":"en","loadingmessage":"Sending user info, please wait...","unknownerror":"Unknown error, make sure access is correct!"};
+var ElementPackConfig = {"ajaxurl":"https:\/\/getnoticed.ca\/wp-admin\/admin-ajax.php","nonce":"7d71c4e062","data_table":{"language":{"sLengthMenu":"Show _MENU_ Entries","sInfo":"Showing _START_ to _END_ of _TOTAL_ entries","sSearch":"Search :","sZeroRecords":"No matching records found","oPaginate":{"sPrevious":"Previous","sNext":"Next"}}},"contact_form":{"sending_msg":"Sending message please wait...","captcha_nd":"Invisible captcha not defined!","captcha_nr":"Could not get invisible captcha response!"},"mailchimp":{"subscribing":"Subscribing you please wait..."},"search":{"more_result":"More Results","search_result":"SEARCH RESULT","not_found":"not found"},"words_limit":{"read_more":"[read more]","read_less":"[read less]"},"elements_data":{"sections":[],"columns":[],"widgets":[]}};
+</script>
+<script src="https://getnoticed.ca/wp-content/plugins/bdthemes-element-pack/assets/js/bdt-uikit.min.js?ver=3.21.7" id="bdt-uikit-js"></script>
+<script src="https://getnoticed.ca/wp-content/plugins/bdthemes-element-pack/assets/js/common/helper.min.js?ver=7.18.14" id="element-pack-helper-js"></script>
+<script src="https://getnoticed.ca/wp-content/plugins/uicore-elements/assets/js/elements/highlighted-text.js?ver=1.3.7" id="ui-e-highlighted-text-js"></script>
+<script src="https://getnoticed.ca/wp-content/plugins/elementor/assets/js/webpack.runtime.min.js?ver=3.32.4" id="elementor-webpack-runtime-js"></script>
+<script src="https://getnoticed.ca/wp-content/plugins/elementor/assets/js/frontend-modules.min.js?ver=3.32.4" id="elementor-frontend-modules-js"></script>
+<script src="https://getnoticed.ca/wp-includes/js/jquery/ui/core.min.js?ver=1.13.3" id="jquery-ui-core-js"></script>
+<script id="elementor-frontend-js-before">
+var elementorFrontendConfig = {"environmentMode":{"edit":false,"wpPreview":false,"isScriptDebug":false},"i18n":{"shareOnFacebook":"Share on Facebook","shareOnTwitter":"Share on Twitter","pinIt":"Pin it","download":"Download","downloadImage":"Download image","fullscreen":"Fullscreen","zoom":"Zoom","share":"Share","playVideo":"Play Video","previous":"Previous","next":"Next","close":"Close","a11yCarouselPrevSlideMessage":"Previous slide","a11yCarouselNextSlideMessage":"Next slide","a11yCarouselFirstSlideMessage":"This is the first slide","a11yCarouselLastSlideMessage":"This is the last slide","a11yCarouselPaginationBulletMessage":"Go to slide"},"is_rtl":false,"breakpoints":{"xs":0,"sm":480,"md":768,"lg":1025,"xl":1440,"xxl":1600},"responsive":{"breakpoints":{"mobile":{"label":"Mobile Portrait","value":767,"default_value":767,"direction":"max","is_enabled":true},"mobile_extra":{"label":"Mobile Landscape","value":880,"default_value":880,"direction":"max","is_enabled":false},"tablet":{"label":"Tablet Portrait","value":1024,"default_value":1024,"direction":"max","is_enabled":true},"tablet_extra":{"label":"Tablet Landscape","value":1200,"default_value":1200,"direction":"max","is_enabled":false},"laptop":{"label":"Laptop","value":1366,"default_value":1366,"direction":"max","is_enabled":false},"widescreen":{"label":"Widescreen","value":2400,"default_value":2400,"direction":"min","is_enabled":false}},"hasCustomBreakpoints":false},"version":"3.32.4","is_static":false,"experimentalFeatures":{"additional_custom_breakpoints":true,"container":true,"theme_builder_v2":true,"nested-elements":true,"home_screen":true,"global_classes_should_enforce_capabilities":true,"e_variables":true,"cloud-library":true,"e_opt_in_v4_page":true,"import-export-customization":true,"e_pro_variables":true},"urls":{"assets":"https:\/\/getnoticed.ca\/wp-content\/plugins\/elementor\/assets\/","ajaxurl":"https:\/\/getnoticed.ca\/wp-admin\/admin-ajax.php","uploadUrl":"https:\/\/getnoticed.ca\/wp-content\/uploads"},"nonces":{"floatingButtonsClickTracking":"8a32260872"},"swiperClass":"swiper","settings":{"editorPreferences":[]},"kit":{"active_breakpoints":["viewport_mobile","viewport_tablet"],"global_image_lightbox":"yes","lightbox_enable_counter":"yes","lightbox_enable_fullscreen":"yes","lightbox_enable_zoom":"yes","lightbox_enable_share":"yes","lightbox_title_src":"title","lightbox_description_src":"description"},"post":{"id":0,"title":"Page not found - Get Noticed","excerpt":""}};
+</script>
+<script src="https://getnoticed.ca/wp-content/plugins/elementor/assets/js/frontend.min.js?ver=3.32.4" id="elementor-frontend-js"></script>
+<script src="https://getnoticed.ca/wp-content/plugins/elementor-pro/assets/js/webpack-pro.runtime.min.js?ver=3.32.2" id="elementor-pro-webpack-runtime-js"></script>
+<script src="https://getnoticed.ca/wp-includes/js/dist/hooks.min.js?ver=4d63a3d491d11ffd8ac6" id="wp-hooks-js"></script>
+<script src="https://getnoticed.ca/wp-includes/js/dist/i18n.min.js?ver=5e580eb46a90c2b997e6" id="wp-i18n-js"></script>
+<script id="wp-i18n-js-after">
+wp.i18n.setLocaleData( { 'text direction\u0004ltr': [ 'ltr' ] } );
+</script>
+<script id="elementor-pro-frontend-js-before">
+var ElementorProFrontendConfig = {"ajaxurl":"https:\/\/getnoticed.ca\/wp-admin\/admin-ajax.php","nonce":"28bc33e0f8","urls":{"assets":"https:\/\/getnoticed.ca\/wp-content\/plugins\/elementor-pro\/assets\/","rest":"https:\/\/getnoticed.ca\/wp-json\/"},"settings":{"lazy_load_background_images":true},"popup":{"hasPopUps":false},"shareButtonsNetworks":{"facebook":{"title":"Facebook","has_counter":true},"twitter":{"title":"Twitter"},"linkedin":{"title":"LinkedIn","has_counter":true},"pinterest":{"title":"Pinterest","has_counter":true},"reddit":{"title":"Reddit","has_counter":true},"vk":{"title":"VK","has_counter":true},"odnoklassniki":{"title":"OK","has_counter":true},"tumblr":{"title":"Tumblr"},"digg":{"title":"Digg"},"skype":{"title":"Skype"},"stumbleupon":{"title":"StumbleUpon","has_counter":true},"mix":{"title":"Mix"},"telegram":{"title":"Telegram"},"pocket":{"title":"Pocket","has_counter":true},"xing":{"title":"XING","has_counter":true},"whatsapp":{"title":"WhatsApp"},"email":{"title":"Email"},"print":{"title":"Print"},"x-twitter":{"title":"X"},"threads":{"title":"Threads"}},"facebook_sdk":{"lang":"en","app_id":""},"lottie":{"defaultAnimationUrl":"https:\/\/getnoticed.ca\/wp-content\/plugins\/elementor-pro\/modules\/lottie\/assets\/animations\/default.json"}};
+</script>
+<script src="https://getnoticed.ca/wp-content/plugins/elementor-pro/assets/js/frontend.min.js?ver=3.32.2" id="elementor-pro-frontend-js"></script>
+<script src="https://getnoticed.ca/wp-content/plugins/elementor-pro/assets/js/elements-handlers.min.js?ver=3.32.2" id="pro-elements-handlers-js"></script>
+</body>
+</html>

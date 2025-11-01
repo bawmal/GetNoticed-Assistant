@@ -1,0 +1,47 @@
+{
+  "name": "ai-career-assistant",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "eslint .",
+    "test": "node clear-and-rescrape.js",
+    "test:full": "node test-scraping-system.js",
+    "test:quick": "node test-quick.js",
+    "debug": "node debug-jobs.js",
+    "test:db": "node test-direct-db.js",
+    "clear": "node clear-cache.js",
+    "start:cron": "node src/lib/startup.js",
+    "scrape:manual": "node manual-scrape.js"
+  },
+  "dependencies": {
+    "@google/generative-ai": "^0.17.1",
+    "@react-pdf/renderer": "^4.3.1",
+    "@supabase/supabase-js": "^2.45.0",
+    "docx": "^9.5.1",
+    "file-saver": "^2.0.5",
+    "html2pdf.js": "^0.12.1",
+    "lucide-react": "^0.441.0",
+    "mammoth": "^1.8.0",
+    "node-cron": "^3.0.3",
+    "pdf-parse": "^1.1.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-dropzone": "^14.2.3",
+    "react-router-dom": "^6.26.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.1",
+    "autoprefixer": "^10.4.20",
+    "eslint": "^9.9.1",
+    "eslint-plugin-react": "^7.35.0",
+    "eslint-plugin-react-hooks": "^5.1.0-rc.0",
+    "eslint-plugin-react-refresh": "^0.4.9",
+    "postcss": "^8.4.45",
+    "tailwindcss": "^3.4.10",
+    "vite": "^5.4.2"
+  }
+}

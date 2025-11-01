@@ -1,0 +1,173 @@
+/* GetNoticed Chrome Extension - Content Styles */
+
+/* Floating Auto-Fill Button */
+#getnoticed-autofill-btn {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+  z-index: 2147483647 !important; /* Maximum z-index */
+}
+
+#getnoticed-autofill-btn:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 25px rgba(59, 130, 246, 0.5) !important;
+}
+
+/* Notification Styles */
+#getnoticed-notification {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+  z-index: 2147483647 !important;
+}
+
+/* Highlight filled fields */
+.getnoticed-filled {
+  border: 2px solid #10b981 !important;
+  background-color: #ecfdf5 !important;
+  transition: all 0.3s ease !important;
+}
+
+/* Field detection highlight */
+.getnoticed-detected {
+  outline: 2px solid #3b82f6 !important;
+  outline-offset: 2px !important;
+  animation: getnoticed-pulse 2s infinite !important;
+}
+
+/* Pulse animation for detected fields */
+@keyframes getnoticed-pulse {
+  0% {
+    outline-color: #3b82f6;
+  }
+  50% {
+    outline-color: #8b5cf6;
+  }
+  100% {
+    outline-color: #3b82f6;
+  }
+}
+
+/* Success state for filled fields */
+.getnoticed-success {
+  border-color: #10b981 !important;
+  background-color: #ecfdf5 !important;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1) !important;
+}
+
+/* Error state for problematic fields */
+.getnoticed-error {
+  border-color: #ef4444 !important;
+  background-color: #fef2f2 !important;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1) !important;
+}
+
+/* Loading state */
+.getnoticed-loading {
+  position: relative !important;
+}
+
+.getnoticed-loading::after {
+  content: '' !important;
+  position: absolute !important;
+  top: 50% !important;
+  right: 8px !important;
+  width: 16px !important;
+  height: 16px !important;
+  margin-top: -8px !important;
+  border: 2px solid #e5e7eb !important;
+  border-top: 2px solid #3b82f6 !important;
+  border-radius: 50% !important;
+  animation: getnoticed-spin 1s linear infinite !important;
+}
+
+@keyframes getnoticed-spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Tooltip for auto-filled fields */
+.getnoticed-tooltip {
+  position: absolute !important;
+  background: #1f2937 !important;
+  color: white !important;
+  padding: 4px 8px !important;
+  border-radius: 4px !important;
+  font-size: 12px !important;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+  z-index: 2147483646 !important;
+  pointer-events: none !important;
+  opacity: 0 !important;
+  transition: opacity 0.2s ease !important;
+}
+
+.getnoticed-tooltip.show {
+  opacity: 1 !important;
+}
+
+/* Override any conflicting styles */
+.getnoticed-filled,
+.getnoticed-detected,
+.getnoticed-success,
+.getnoticed-error {
+  transition: all 0.3s ease !important;
+}
+
+/* Ensure button is always visible */
+#getnoticed-autofill-btn {
+  position: fixed !important;
+  bottom: 20px !important;
+  right: 20px !important;
+  z-index: 2147483647 !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  #getnoticed-autofill-btn {
+    bottom: 10px !important;
+    right: 10px !important;
+    padding: 10px 12px !important;
+    font-size: 12px !important;
+  }
+  
+  #getnoticed-notification {
+    top: 10px !important;
+    right: 10px !important;
+    max-width: 250px !important;
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .getnoticed-filled {
+    background-color: rgba(16, 185, 129, 0.1) !important;
+  }
+  
+  .getnoticed-success {
+    background-color: rgba(16, 185, 129, 0.1) !important;
+  }
+  
+  .getnoticed-error {
+    background-color: rgba(239, 68, 68, 0.1) !important;
+  }
+}
+
+/* Accessibility improvements */
+.getnoticed-filled:focus,
+.getnoticed-success:focus {
+  outline: 2px solid #10b981 !important;
+  outline-offset: 2px !important;
+}
+
+/* Animation for successful auto-fill */
+@keyframes getnoticed-success {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.02);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.getnoticed-animate-success {
+  animation: getnoticed-success 0.5s ease-out !important;
+}

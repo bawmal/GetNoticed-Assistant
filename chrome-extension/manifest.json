@@ -1,0 +1,50 @@
+{
+  "manifest_version": 3,
+  "name": "GetNoticed - Job Application Assistant",
+  "version": "1.0.0",
+  "description": "Auto-fill job applications with your tailored CV and cover letter materials",
+  
+  "permissions": [
+    "activeTab",
+    "storage",
+    "scripting",
+    "tabs",
+    "contextMenus"
+  ],
+  
+  "host_permissions": [
+    "https://*/*",
+    "http://localhost:3000/*",
+    "http://localhost:3002/*",
+    "http://localhost:5173/*"
+  ],
+  
+  "background": {
+    "service_worker": "background.js"
+  },
+  
+  "content_scripts": [{
+    "matches": ["http://*/*", "https://*/*"],
+    "js": ["content.js"],
+    "css": ["content.css"],
+    "run_at": "document_end"
+  }],
+  
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "GetNoticed Assistant",
+    "default_icon": {
+      "16": "icon.png",
+      "32": "icon.png",
+      "48": "icon.png",
+      "128": "icon.png"
+    }
+  },
+  
+  "icons": {
+    "16": "icon.png",
+    "32": "icon.png",
+    "48": "icon.png",
+    "128": "icon.png"
+  }
+}
