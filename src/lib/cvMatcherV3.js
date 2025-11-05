@@ -308,7 +308,7 @@ function analyzeCVContent(userProfile) {
       const cvData = JSON.parse(experienceText)
       experienceText = extractTextFromCVJSON(cvData)
       
-      // Extract structured data
+      // Extract structured data - Experience
       if (cvData.work_experience && Array.isArray(cvData.work_experience)) {
         cvContent.experience.roles = cvData.work_experience.map(job => ({
           title: job.title || '',
@@ -325,7 +325,26 @@ function analyzeCVContent(userProfile) {
         }))
       }
       
+      // Extract Education
+      if (cvData.education && Array.isArray(cvData.education)) {
+        cvContent.education = cvData.education.map(edu => ({
+          degree: edu.degree || '',
+          institution: edu.institution || '',
+          field: edu.field_of_study || edu.major || ''
+        }))
+      }
+      
+      // Extract Certifications
+      if (cvData.certifications && Array.isArray(cvData.certifications)) {
+        cvContent.certifications = cvData.certifications.map(cert => {
+          if (typeof cert === 'string') return cert
+          return cert.name || cert.title || ''
+        }).filter(c => c)
+      }
+      
       console.log('📋 Extracted roles:', cvContent.experience.roles)
+      console.log('🎓 Extracted education:', cvContent.education)
+      console.log('📜 Extracted certifications:', cvContent.certifications)
     } catch (e) {
       console.warn('Failed to parse CV JSON:', e)
     }
@@ -355,15 +374,43 @@ function analyzeCVContent(userProfile) {
 function extractTextFromCVJSON(cvData) {
   const parts = []
   
+  // Summary
+  if (cvData.summary) parts.push(cvData.summary)
+  
+  // Work Experience
   if (cvData.work_experience && Array.isArray(cvData.work_experience)) {
     cvData.work_experience.forEach(job => {
       if (job.title) parts.push(job.title)
       if (job.company) parts.push(job.company)
       if (job.description) parts.push(job.description)
+      if (job.achievements && Array.isArray(job.achievements)) {
+        parts.push(...job.achievements)
+      }
     })
   }
   
-  if (cvData.summary) parts.push(cvData.summary)
+  // Also check for 'experience' key (alternative format)
+  if (cvData.experience && Array.isArray(cvData.experience)) {
+    cvData.experience.forEach(job => {
+      if (job.title) parts.push(job.title)
+      if (job.company) parts.push(job.company)
+      if (job.description) parts.push(job.description)
+      if (job.achievements && Array.isArray(job.achievements)) {
+        parts.push(...job.achievements)
+      }
+    })
+  }
+  
+  // Education
+  if (cvData.education && Array.isArray(cvData.education)) {
+    cvData.education.forEach(edu => {
+      if (edu.degree) parts.push(edu.degree)
+      if (edu.institution) parts.push(edu.institution)
+      if (edu.field_of_study) parts.push(edu.field_of_study)
+    })
+  }
+  
+  // Skills
   if (cvData.skills) {
     if (Array.isArray(cvData.skills)) {
       parts.push(...cvData.skills)
@@ -371,9 +418,30 @@ function extractTextFromCVJSON(cvData) {
       Object.values(cvData.skills).forEach(skillGroup => {
         if (Array.isArray(skillGroup)) {
           parts.push(...skillGroup)
+        } else if (typeof skillGroup === 'string') {
+          parts.push(skillGroup)
         }
       })
     }
+  }
+  
+  // Certifications
+  if (cvData.certifications && Array.isArray(cvData.certifications)) {
+    cvData.certifications.forEach(cert => {
+      if (typeof cert === 'string') {
+        parts.push(cert)
+      } else if (cert.name) {
+        parts.push(cert.name)
+      }
+    })
+  }
+  
+  // Projects (if any)
+  if (cvData.projects && Array.isArray(cvData.projects)) {
+    cvData.projects.forEach(project => {
+      if (project.name) parts.push(project.name)
+      if (project.description) parts.push(project.description)
+    })
   }
   
   return parts.filter(p => p).join('\n')

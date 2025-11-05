@@ -657,7 +657,20 @@ export const generateMinimalistPDF = async (content, jobTitle, companyName = '')
 }
 
 // Strategic Brief PDF Component
-const StrategicBriefPDF = ({ brief, candidateName, companyName, jobTitle }) => (
+const StrategicBriefPDF = ({ brief, candidateName, companyName, jobTitle }) => {
+  // Handle both old and new formats
+  const hasNewFormat = brief.product_vision || brief.key_features
+  
+  // Helper function to safely render values (convert objects to strings)
+  const safeRender = (value) => {
+    if (value === null || value === undefined) return ''
+    if (typeof value === 'string') return value
+    if (typeof value === 'number') return String(value)
+    if (typeof value === 'object') return JSON.stringify(value)
+    return String(value)
+  }
+  
+  return (
   <Document>
     <Page size="LETTER" style={{ padding: '0.6in 0.75in', fontFamily: 'Helvetica', fontSize: 10 }}>
       {/* Header */}
@@ -667,31 +680,78 @@ const StrategicBriefPDF = ({ brief, candidateName, companyName, jobTitle }) => (
         <Text style={{ fontSize: 9, color: '#6b7280' }}>Prepared by {candidateName}</Text>
       </View>
 
-      {/* Case Study */}
-      <View style={{ marginBottom: 16 }} wrap={false}>
-        <Text style={{ fontSize: 14, fontWeight: 'bold', color: '#2563eb', marginBottom: 10 }}>1. Relevant Projects / Case Study</Text>
-        <View style={{ backgroundColor: '#f9fafb', padding: 12, borderRadius: 4 }}>
-          <Text style={{ fontSize: 10, fontWeight: 'bold', marginBottom: 6, color: '#1f2937' }}>{brief.case_study.title}</Text>
-          
-          <View style={{ marginBottom: 8 }}>
-            <Text style={{ fontSize: 9, color: '#6b7280', lineHeight: 1.5 }}>{brief.case_study.opening_paragraph}</Text>
-          </View>
-          
-          <View style={{ marginBottom: 8 }}>
-            <Text style={{ fontSize: 9, fontWeight: 'semibold', color: '#374151', marginBottom: 4 }}>Vision & Value Proposition:</Text>
-            <Text style={{ fontSize: 9, color: '#6b7280', lineHeight: 1.5 }}>{brief.case_study.vision_and_value}</Text>
-          </View>
-          
-          <View style={{ marginBottom: 8 }}>
-            <Text style={{ fontSize: 9, fontWeight: 'semibold', color: '#374151', marginBottom: 4 }}>Anchored in Proven Results (from CV):</Text>
-            <Text style={{ fontSize: 9, color: '#6b7280', lineHeight: 1.5 }}>{brief.case_study.proven_results}</Text>
-          </View>
-          
-          <View>
-            <Text style={{ fontSize: 9, color: '#6b7280', lineHeight: 1.5, fontWeight: 'semibold' }}>{brief.case_study.closing_statement}</Text>
+      {/* Product Vision */}
+      {brief.product_vision && (
+        <View style={{ marginBottom: 16 }} wrap={false}>
+          <Text style={{ fontSize: 14, fontWeight: 'bold', color: '#2563eb', marginBottom: 10 }}>Product Vision</Text>
+          <View style={{ backgroundColor: '#f9fafb', padding: 12, borderRadius: 4 }}>
+            <Text style={{ fontSize: 9, color: '#374151', lineHeight: 1.5 }}>{String(brief.product_vision || '')}</Text>
           </View>
         </View>
-      </View>
+      )}
+
+      {/* Problem Statement */}
+      {brief.problem_statement && (
+        <View style={{ marginBottom: 16 }} wrap={false}>
+          <Text style={{ fontSize: 14, fontWeight: 'bold', color: '#2563eb', marginBottom: 10 }}>Problem Statement</Text>
+          <View style={{ backgroundColor: '#f9fafb', padding: 12, borderRadius: 4 }}>
+            <Text style={{ fontSize: 9, color: '#374151', lineHeight: 1.5 }}>{String(brief.problem_statement || '')}</Text>
+          </View>
+        </View>
+      )}
+
+      {/* Key Features & Contribution */}
+      {brief.key_features && brief.key_features.length > 0 && (
+        <View style={{ marginBottom: 16 }} wrap={false}>
+          <Text style={{ fontSize: 14, fontWeight: 'bold', color: '#2563eb', marginBottom: 10 }}>Key Features & Your Contribution</Text>
+          <View style={{ backgroundColor: '#f9fafb', padding: 12, borderRadius: 4 }}>
+            {brief.key_features.map((feature, index) => {
+              // Handle different feature object structures
+              const title = feature.heading || feature.title || feature.feature || `Feature ${index + 1}`
+              const description = feature.description || feature.details || 'No description available'
+              const contribution = feature.contribution || feature.impact || 'Contribution details not specified'
+              
+              return (
+                <View key={index} style={{ marginBottom: 8 }}>
+                  <Text style={{ fontSize: 10, fontWeight: 'bold', marginBottom: 4, color: '#1f2937' }}>{String(title || '')}</Text>
+                  <Text style={{ fontSize: 9, color: '#374151', lineHeight: 1.5, marginBottom: 3 }}>{String(description || '')}</Text>
+                  <Text style={{ fontSize: 9, color: '#6b7280', fontStyle: 'italic' }}><Text style={{ fontWeight: 'semibold' }}>Contribution:</Text> {String(contribution || '')}</Text>
+                </View>
+              )
+            })}
+          </View>
+        </View>
+      )}
+
+      {/* Technical Principles */}
+      {brief.technical_principles && (
+        <View style={{ marginBottom: 16 }} wrap={false}>
+          <Text style={{ fontSize: 14, fontWeight: 'bold', color: '#2563eb', marginBottom: 10 }}>Technical & Architectural Principles</Text>
+          <View style={{ backgroundColor: '#f9fafb', padding: 12, borderRadius: 4 }}>
+            <Text style={{ fontSize: 9, color: '#374151', lineHeight: 1.5 }}>{String(brief.technical_principles || '')}</Text>
+          </View>
+        </View>
+      )}
+
+      {/* Go-to-Market Strategy */}
+      {brief.go_to_market_strategy && (
+        <View style={{ marginBottom: 16 }} wrap={false}>
+          <Text style={{ fontSize: 14, fontWeight: 'bold', color: '#2563eb', marginBottom: 10 }}>Go-to-Market Strategy</Text>
+          <View style={{ backgroundColor: '#f9fafb', padding: 12, borderRadius: 4 }}>
+            <Text style={{ fontSize: 9, color: '#374151', lineHeight: 1.5 }}>{String(brief.go_to_market_strategy || '')}</Text>
+          </View>
+        </View>
+      )}
+
+      {/* Success Metrics */}
+      {brief.success_metrics && (
+        <View style={{ marginBottom: 16 }} wrap={false}>
+          <Text style={{ fontSize: 14, fontWeight: 'bold', color: '#2563eb', marginBottom: 10 }}>Quantifiable Impact & Success Metrics</Text>
+          <View style={{ backgroundColor: '#f9fafb', padding: 12, borderRadius: 4 }}>
+            <Text style={{ fontSize: 9, color: '#374151', lineHeight: 1.5 }}>{String(brief.success_metrics || '')}</Text>
+          </View>
+        </View>
+      )}
 
       {/* 90-Day Plan */}
       <View style={{ marginBottom: 16 }}>
@@ -703,40 +763,40 @@ const StrategicBriefPDF = ({ brief, candidateName, companyName, jobTitle }) => (
             </Text>
           )}
           
-          {brief.ninety_day_plan.phase_1 && (
+          {brief.ninety_day_plan?.phase_1 && (
             <View style={{ marginBottom: 10 }} wrap={false}>
               <Text style={{ fontSize: 10, fontWeight: 'bold', color: '#2563eb', marginBottom: 4 }}>
                 {brief.ninety_day_plan.phase_1.title}
               </Text>
-              {brief.ninety_day_plan.phase_1.actions.map((action, i) => (
+              {brief.ninety_day_plan.phase_1.actions?.map((action, i) => (
                 <Text key={i} style={{ fontSize: 9, color: '#374151', marginBottom: 2, paddingLeft: 12 }}>• {action}</Text>
               ))}
             </View>
           )}
           
-          {brief.ninety_day_plan.phase_2 && (
+          {brief.ninety_day_plan?.phase_2 && (
             <View style={{ marginBottom: 10 }} wrap={false}>
               <Text style={{ fontSize: 10, fontWeight: 'bold', color: '#2563eb', marginBottom: 4 }}>
-                {brief.ninety_day_plan.phase_2.title}
+                {safeRender(brief.ninety_day_plan.phase_2.title)}
               </Text>
-              {brief.ninety_day_plan.phase_2.actions.map((action, i) => (
-                <Text key={i} style={{ fontSize: 9, color: '#374151', marginBottom: 2, paddingLeft: 12 }}>• {action}</Text>
+              {brief.ninety_day_plan.phase_2.actions?.map((action, i) => (
+                <Text key={i} style={{ fontSize: 9, color: '#374151', marginBottom: 2, paddingLeft: 12 }}>• {safeRender(action)}</Text>
               ))}
             </View>
           )}
           
-          {brief.ninety_day_plan.phase_3 && (
+          {brief.ninety_day_plan?.phase_3 && (
             <View style={{ marginBottom: 10 }} wrap={false}>
               <Text style={{ fontSize: 10, fontWeight: 'bold', color: '#2563eb', marginBottom: 4 }}>
-                {brief.ninety_day_plan.phase_3.title}
+                {safeRender(brief.ninety_day_plan.phase_3.title)}
               </Text>
-              {brief.ninety_day_plan.phase_3.actions.map((action, i) => (
-                <Text key={i} style={{ fontSize: 9, color: '#374151', marginBottom: 2, paddingLeft: 12 }}>• {action}</Text>
+              {brief.ninety_day_plan.phase_3.actions?.map((action, i) => (
+                <Text key={i} style={{ fontSize: 9, color: '#374151', marginBottom: 2, paddingLeft: 12 }}>• {safeRender(action)}</Text>
               ))}
             </View>
           )}
           
-          {brief.ninety_day_plan.closing_statement && (
+          {brief.ninety_day_plan?.closing_statement && (
             <Text style={{ fontSize: 9, color: '#6b7280', lineHeight: 1.5, fontWeight: 'semibold', fontStyle: 'italic' }}>
               {brief.ninety_day_plan.closing_statement}
             </Text>
@@ -744,36 +804,18 @@ const StrategicBriefPDF = ({ brief, candidateName, companyName, jobTitle }) => (
         </View>
       </View>
 
-      {/* KPIs */}
-      <View>
-        <Text style={{ fontSize: 14, fontWeight: 'bold', color: '#2563eb', marginBottom: 10 }}>3. Key Performance Indicators (KPIs)</Text>
-        <View style={{ backgroundColor: '#f9fafb', padding: 12, borderRadius: 4 }}>
-          {brief.kpis.opening_statement && (
-            <Text style={{ fontSize: 9, color: '#6b7280', lineHeight: 1.5, marginBottom: 10, fontWeight: 'semibold' }}>
-              {brief.kpis.opening_statement}
-            </Text>
-          )}
-          
-          {brief.kpis.metrics && brief.kpis.metrics.map((metric, i) => (
-            <View key={i} style={{ marginBottom: 8, paddingLeft: 8, borderLeft: '3pt solid #2563eb' }} wrap={false}>
-              <Text style={{ fontSize: 10, fontWeight: 'bold', color: '#1f2937', marginBottom: 2 }}>{metric.name}</Text>
-              <Text style={{ fontSize: 9, color: '#6b7280', lineHeight: 1.5 }}>{metric.description}</Text>
-            </View>
-          ))}
-          
-          {brief.kpis.closing_statement && (
-            <Text style={{ fontSize: 9, color: '#6b7280', lineHeight: 1.5, fontWeight: 'semibold', fontStyle: 'italic', marginTop: 6 }}>
-              {brief.kpis.closing_statement}
-            </Text>
-          )}
-        </View>
-      </View>
     </Page>
   </Document>
-)
+  )
+}
 
-export const generateStrategicBriefPDF = async (brief, candidateName, companyName, jobTitle) => {
+export const generateStrategicBriefPDF = async (brief, candidateName, companyName, jobTitle, returnBlob = false) => {
   const blob = await pdf(<StrategicBriefPDF brief={brief} candidateName={candidateName} companyName={companyName} jobTitle={jobTitle} />).toBlob()
+  
+  if (returnBlob) {
+    return blob
+  }
+  
   const url = URL.createObjectURL(blob)
   const link = document.createElement('a')
   link.href = url

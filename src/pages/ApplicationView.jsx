@@ -5,6 +5,7 @@ import ResumeTemplateSelector from '../components/ResumeTemplateSelector'
 import EditableCoverLetter from '../components/EditableCoverLetter'
 import { geminiService } from '../lib/gemini'
 import { generateStrategicBriefPDF } from '../lib/pdfGenerator.jsx'
+
 import { 
   ArrowLeft,
   FileText, 
@@ -16,8 +17,30 @@ import {
   Trash2,
   CheckCircle,
   RefreshCw,
-  MessageSquare
+  MessageSquare,
+  Share2
 } from 'lucide-react'
+
+// Simple markdown parser for strategic brief
+const parseMarkdown = (text) => {
+  if (!text) return ''
+  
+  try {
+    return text
+      // Convert **bold** to <strong>
+      .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+      // Convert double newlines to paragraphs
+      .replace(/\n\n+/g, '</p><p>')
+      // Convert single newlines to line breaks
+      .replace(/\n/g, '<br />')
+      // Wrap in paragraphs
+      .replace(/^(?!<p>)/, '<p>')
+      .replace(/$/, '</p>')
+  } catch (error) {
+    console.error('Markdown parsing error:', error)
+    return text // Return original text if parsing fails
+  }
+}
 
 export default function ApplicationView() {
   const { id } = useParams()
@@ -26,6 +49,8 @@ export default function ApplicationView() {
   const [loading, setLoading] = useState(true)
   const [activeTab, setActiveTab] = useState('analysis')
   const [regenerating, setRegenerating] = useState(false)
+  const [generating, setGenerating] = useState(false)
+  const [shareableLink, setShareableLink] = useState(null)
 
   useEffect(() => {
     loadApplication()
@@ -420,7 +445,167 @@ export default function ApplicationView() {
           {/* Strategic Brief Tab */}
           {activeTab === 'brief' && brief && (
             <div className="space-y-6">
-              <div className="flex justify-end">
+              <div className="flex justify-end gap-3">
+                <button 
+                  onClick={async () => {
+                    setGenerating(true)
+                    try {
+                      console.log('🔄 Starting brief regeneration...')
+                      
+                      // Get current profile
+                      const { data: profile, error: profileError } = await supabase
+                        .from('user_profiles')
+                        .select('*')
+                        .eq('id', application.profile_id)
+                        .single()
+                      
+                      if (profileError) {
+                        console.error('❌ Profile fetch error:', profileError)
+                        throw profileError
+                      }
+                      
+                      console.log('✅ Profile fetched:', profile?.profile_name)
+                      
+                      // Regenerate strategic brief with new format
+                      console.log('📝 Generating new brief...')
+                      const newBrief = await geminiService.generateStrategicBrief(
+                        application.job_description,
+                        application.company_name,
+                        profile,
+                        application.drafts?.analysis
+                      )
+                      
+                      console.log('✅ New brief generated:', Object.keys(newBrief || {}))
+                      
+                      // Update database with new brief
+                      const { error: updateError } = await supabase
+                        .from('applications')
+                        .update({ 
+                          drafts: {
+                            ...application.drafts,
+                            brief: newBrief
+                          }
+                        })
+                        .eq('id', id)
+                      
+                      if (updateError) throw updateError
+                      
+                      // Update local state
+                      console.log('🔄 Updating local state with new brief...')
+                      console.log('📋 New brief structure:', Object.keys(newBrief || {}))
+                      
+                      setApplication(prev => {
+                        const updated = {
+                          ...prev,
+                          drafts: {
+                            ...prev.drafts,
+                            brief: newBrief
+                          }
+                        }
+                        console.log('✅ Local state updated')
+                        console.log('📋 Current brief keys:', Object.keys(updated.drafts?.brief || {}))
+                        return updated
+                      })
+                      
+                      alert('Strategic brief regenerated with new format! ✓')
+                    } catch (error) {
+                      console.error('Error regenerating brief:', error)
+                      alert('Failed to regenerate brief. Please try again.')
+                    } finally {
+                      setGenerating(false)
+                    }
+                  }}
+                  className="btn-primary flex items-center gap-2"
+                  disabled={generating}
+                >
+                  <RefreshCw size={18} />
+                  {generating ? 'Regenerating...' : 'Regenerate Brief'}
+                </button>
+                <button 
+                  onClick={async () => {
+                    setGenerating(true)
+                    // Clear old link to show new one
+                    setShareableLink(null)
+                    try {
+                      console.log('🔗 Starting share link generation...')
+                      console.log('📋 Brief structure:', Object.keys(brief || {}))
+                      console.log('🔍 Full brief data:', JSON.stringify(brief, null, 2))
+                      console.log('👤 Candidate name:', resumeContent?.personalDetails?.name || 'Candidate')
+                      console.log('🏢 Company:', application.company_name)
+                      console.log('💼 Job title:', application.job_title)
+                      
+                      // Define variables for filename
+                      const candidateName = resumeContent?.personalDetails?.name || 'Candidate'
+                      const companyName = application.company_name
+                      const jobTitle = application.job_title
+                      
+                      console.log('📄 Generating PDF blob...')
+                      const pdfBlob = await generateStrategicBriefPDF(
+                        brief, 
+                        candidateName,
+                        companyName,
+                        jobTitle,
+                        application.job_title,
+                        true // return blob instead of downloading
+                      )
+                      
+                      console.log('✅ PDF blob generated, size:', pdfBlob?.size, 'bytes')
+                      
+                      // Upload to Supabase storage
+                      const cleanName = candidateName
+                        .replace(/[^a-zA-Z0-9\s]/g, '') // Remove special chars except spaces
+                        .replace(/\s+/g, '-') // Replace spaces with hyphens
+                        .toLowerCase()
+                        .replace(/^-+|-+$/g, '') // Remove leading/trailing hyphens
+                      
+                      const cleanCompany = companyName
+                        .replace(/[^a-zA-Z0-9\s]/g, '') // Remove special chars except spaces
+                        .replace(/\s+/g, '-') // Replace spaces with hyphens
+                        .toLowerCase()
+                        .replace(/^-+|-+$/g, '') // Remove leading/trailing hyphens
+                      
+                      const fileName = `strategic-brief-${cleanName}-${cleanCompany}-${Date.now()}.pdf`
+                      
+                      console.log('🧹 Clean candidate name:', cleanName)
+                      console.log('🧹 Clean company name:', cleanCompany)
+                      console.log('📁 Final filename:', fileName)
+                      console.log('☁️ Uploading to Supabase:', fileName)
+                      
+                      const { data, error } = await supabase.storage
+                        .from('application-materials')
+                        .upload(fileName, pdfBlob, {
+                          contentType: 'application/pdf',
+                          upsert: false
+                        })
+                      
+                      if (error) throw error
+                      
+                      // Get public URL
+                      const { data: { publicUrl } } = supabase.storage
+                        .from('application-materials')
+                        .getPublicUrl(fileName)
+                      
+                      // Store and display the link
+                      console.log('🔗 Setting shareable link:', publicUrl)
+                      setShareableLink(publicUrl)
+                      console.log('✅ Shareable link state updated')
+                      
+                      // Copy to clipboard
+                      await navigator.clipboard.writeText(publicUrl)
+                      alert('Shareable link generated and copied to clipboard! ✓')
+                    } catch (error) {
+                      console.error('Error generating share link:', error)
+                      alert('Failed to generate share link. Please try again.')
+                    } finally {
+                      setGenerating(false)
+                    }
+                  }}
+                  className="btn-secondary flex items-center gap-2"
+                  disabled={generating}
+                >
+                  <Share2 size={18} />
+                  {generating ? 'Generating Link...' : 'Share Link'}
+                </button>
                 <button 
                   onClick={() => generateStrategicBriefPDF(
                     brief, 
@@ -435,43 +620,117 @@ export default function ApplicationView() {
                 </button>
               </div>
 
-              {/* Case Study */}
-              {brief.case_study && (
-                <div>
-                  <h3 className="text-xl font-semibold text-blue-600 mb-4">1. Relevant Projects / Case Study</h3>
-                  <div className="bg-gray-50 p-4 rounded-lg space-y-4">
-                    <div>
-                      <h4 className="font-semibold text-gray-900 text-lg">{brief.case_study.title}</h4>
-                    </div>
-                    
-                    <div>
-                      <p className="text-gray-600 leading-relaxed">{brief.case_study.opening_paragraph}</p>
-                    </div>
-                    
-                    <div>
-                      <h5 className="font-medium text-gray-700 mb-2">Vision & Value Proposition:</h5>
-                      <div className="text-gray-600 leading-relaxed whitespace-pre-line">{brief.case_study.vision_and_value}</div>
-                    </div>
-                    
-                    <div>
-                      <h5 className="font-medium text-gray-700 mb-2">Anchored in Proven Results (from CV):</h5>
-                      <div className="text-gray-600 leading-relaxed whitespace-pre-line">{brief.case_study.proven_results}</div>
-                    </div>
-                    
-                    <div>
-                      <p className="text-gray-600 leading-relaxed font-medium">{brief.case_study.closing_statement}</p>
-                    </div>
+              {/* Shareable Link Display */}
+              {shareableLink && (
+                <div className="mb-4 p-4 bg-green-50 border border-green-200 rounded-lg">
+                  <div className="flex items-center justify-between mb-2">
+                    <h4 className="text-sm font-semibold text-green-800">Shareable Link Generated</h4>
+                    <button
+                      onClick={() => {
+                        navigator.clipboard.writeText(shareableLink)
+                        alert('Link copied to clipboard! ✓')
+                      }}
+                      className="text-xs px-2 py-1 bg-green-600 text-white rounded hover:bg-green-700 transition-colors"
+                    >
+                      Copy Link
+                    </button>
+                  </div>
+                  <div className="text-xs text-green-700 break-all bg-white p-2 rounded border border-green-300">
+                    {shareableLink}
                   </div>
                 </div>
               )}
 
-              {/* 90-Day Plan */}
+              {/* Product Vision */}
+              {brief.product_vision && (
+                <div>
+                  <h3 className="text-2xl font-bold text-gray-900 mb-3">Product Vision</h3>
+                  <div 
+                    className="text-gray-700 leading-relaxed text-base"
+                    dangerouslySetInnerHTML={{ __html: parseMarkdown(brief.product_vision) }}
+                  />
+                </div>
+              )}
+
+              {/* Problem Statement */}
+              {brief.problem_statement && (
+                <div>
+                  <h3 className="text-2xl font-bold text-gray-900 mb-3">Problem Statement</h3>
+                  <div 
+                    className="text-gray-700 leading-relaxed text-base"
+                    dangerouslySetInnerHTML={{ __html: parseMarkdown(brief.problem_statement) }}
+                  />
+                </div>
+              )}
+
+              {/* Key Features & Contribution */}
+              {brief.key_features && brief.key_features.length > 0 && (
+                <div>
+                  <h3 className="text-2xl font-bold text-gray-900 mb-4">Key Features & Bawo Maleghemi's Contribution</h3>
+                  <div className="space-y-4">
+                    {brief.key_features.map((feature, index) => (
+                      <div key={index} className="border-l-4 border-blue-500 pl-4">
+                        <h4 className="font-bold text-gray-900 mb-2">{feature.heading}</h4>
+                        <p className="text-gray-700 leading-relaxed mb-2">{feature.description}</p>
+                        <p className="text-gray-600 italic leading-relaxed text-sm"><span className="font-semibold">Contribution:</span> {feature.contribution}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Technical & Architectural Principles */}
+              {brief.technical_principles && (
+                <div>
+                  <h3 className="text-2xl font-bold text-gray-900 mb-3">Technical & Architectural Principles</h3>
+                  <p className="text-gray-700 leading-relaxed text-base">{brief.technical_principles}</p>
+                </div>
+              )}
+
+              {/* Go-to-Market Strategy */}
+              {brief.go_to_market_strategy && (
+                <div>
+                  <h3 className="text-2xl font-bold text-gray-900 mb-3">Go-to-Market Strategy</h3>
+                  <p className="text-gray-700 leading-relaxed text-base">{brief.go_to_market_strategy}</p>
+                </div>
+              )}
+
+              {/* Success Metrics */}
+              {brief.success_metrics && brief.success_metrics.length > 0 && (
+                <div>
+                  <h3 className="text-2xl font-bold text-gray-900 mb-4">Quantifiable Impact & Success Metrics</h3>
+                  <div className="space-y-3">
+                    {brief.success_metrics.map((metric, index) => (
+                      <div key={index}>
+                        <p className="font-bold text-gray-900">{metric.category}: <span className="font-normal">{metric.target}</span></p>
+                        <p className="text-gray-600 text-sm ml-4">{metric.impact}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* 90-Day Strategic Plan - New Format */}
               {brief.ninety_day_plan && (
                 <div>
-                  <h3 className="text-xl font-semibold text-blue-600 mb-4">2. 90-Day Plan</h3>
+                  <h3 className="text-2xl font-bold text-gray-900 mb-4">90-Day Strategic Plan</h3>
                   <div className="bg-gray-50 p-4 rounded-lg space-y-4">
                     {brief.ninety_day_plan.opening_statement && (
-                      <p className="text-gray-600 leading-relaxed font-medium">{brief.ninety_day_plan.opening_statement}</p>
+                      <div 
+                        className="text-gray-700 leading-relaxed text-base"
+                        dangerouslySetInnerHTML={{ __html: parseMarkdown(brief.ninety_day_plan.opening_statement) }}
+                      />
+                    )}
+                    
+                    {brief.ninety_day_plan.key_outcomes && brief.ninety_day_plan.key_outcomes.length > 0 && (
+                      <div>
+                        <h4 className="font-semibold text-blue-600 mb-3">Key Outcomes by 90 Days</h4>
+                        <ul className="space-y-2">
+                          {brief.ninety_day_plan.key_outcomes.map((outcome, i) => (
+                            <li key={i} className="text-gray-700 pl-4">• {outcome}</li>
+                          ))}
+                        </ul>
+                      </div>
                     )}
                     
                     {brief.ninety_day_plan.phase_1 && (
@@ -479,7 +738,7 @@ export default function ApplicationView() {
                         <h4 className="font-semibold text-blue-600 mb-2">{brief.ninety_day_plan.phase_1.title}</h4>
                         <ul className="space-y-1">
                           {brief.ninety_day_plan.phase_1.actions.map((action, i) => (
-                            <li key={i} className="text-gray-600 text-sm">• {action}</li>
+                            <li key={i} className="text-gray-600 text-sm pl-4">• {action}</li>
                           ))}
                         </ul>
                       </div>
@@ -490,7 +749,7 @@ export default function ApplicationView() {
                         <h4 className="font-semibold text-blue-600 mb-2">{brief.ninety_day_plan.phase_2.title}</h4>
                         <ul className="space-y-1">
                           {brief.ninety_day_plan.phase_2.actions.map((action, i) => (
-                            <li key={i} className="text-gray-600 text-sm">• {action}</li>
+                            <li key={i} className="text-gray-600 text-sm pl-4">• {action}</li>
                           ))}
                         </ul>
                       </div>
@@ -501,39 +760,10 @@ export default function ApplicationView() {
                         <h4 className="font-semibold text-blue-600 mb-2">{brief.ninety_day_plan.phase_3.title}</h4>
                         <ul className="space-y-1">
                           {brief.ninety_day_plan.phase_3.actions.map((action, i) => (
-                            <li key={i} className="text-gray-600 text-sm">• {action}</li>
+                            <li key={i} className="text-gray-600 text-sm pl-4">• {action}</li>
                           ))}
                         </ul>
                       </div>
-                    )}
-                    
-                    {brief.ninety_day_plan.closing_statement && (
-                      <p className="text-gray-600 leading-relaxed font-medium italic">{brief.ninety_day_plan.closing_statement}</p>
-                    )}
-                  </div>
-                </div>
-              )}
-
-              {/* KPIs */}
-              {brief.kpis && (
-                <div>
-                  <h3 className="text-xl font-semibold text-blue-600 mb-4">3. Key Performance Indicators (KPIs)</h3>
-                  <div className="bg-gray-50 p-4 rounded-lg space-y-4">
-                    {brief.kpis.opening_statement && (
-                      <p className="text-gray-600 leading-relaxed font-medium">{brief.kpis.opening_statement}</p>
-                    )}
-                    
-                    <div className="space-y-3">
-                      {brief.kpis.metrics && brief.kpis.metrics.map((metric, i) => (
-                        <div key={i} className="border-l-4 border-blue-500 pl-4">
-                          <div className="font-semibold text-gray-900 mb-1">{metric.name}</div>
-                          <div className="text-gray-600 text-sm leading-relaxed">{metric.description}</div>
-                        </div>
-                      ))}
-                    </div>
-                    
-                    {brief.kpis.closing_statement && (
-                      <p className="text-gray-600 leading-relaxed font-medium italic">{brief.kpis.closing_statement}</p>
                     )}
                   </div>
                 </div>

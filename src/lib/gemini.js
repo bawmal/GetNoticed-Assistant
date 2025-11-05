@@ -268,9 +268,15 @@ Return ONLY valid JSON, no markdown formatting or explanations.`
     const jsonText = text.replace(/```json\n?/g, '').replace(/```\n?/g, '').trim()
     
     try {
-      return JSON.parse(jsonText)
+      const parsed = JSON.parse(jsonText)
+      console.log('✅ CV parsed successfully')
+      console.log('  - Has certifications:', !!parsed.certifications)
+      console.log('  - Certifications count:', parsed.certifications?.length || 0)
+      return parsed
     } catch (error) {
-      console.error('Failed to parse CV JSON:', error)
+      console.error('❌ Failed to parse CV JSON:', error)
+      console.error('📄 Raw response (first 500 chars):', text.substring(0, 500))
+      console.error('🧹 Cleaned JSON (first 500 chars):', jsonText.substring(0, 500))
       throw new Error('Failed to parse CV content. Please try again.')
     }
   },
@@ -397,6 +403,7 @@ Return a JSON object with this structure:
       "details": "string"
     }
   ],
+  "certifications": ["string (list all relevant certifications from candidate profile)"],
   "projects": [
     {
       "name": "string",
@@ -478,6 +485,12 @@ Return ONLY valid JSON.`
   // Module 8: Generate Strategic Job Brief (MVP CORE)
   async generateStrategicBrief(jobDescription, companyName, userProfile, jobAnalysis) {
     try {
+      console.log('🔍 DEBUG: Strategic Brief Generation')
+      console.log('📄 Job Description (first 200 chars):', jobDescription?.substring(0, 200))
+      console.log('🏢 Company Name:', companyName)
+      console.log('👤 User Profile:', userProfile?.profile_name)
+      console.log('📊 Job Analysis:', jobAnalysis?.score + '% match')
+      
       const model = getModel()
       
       const prompt = `You are a strategic career advisor creating a polished, executive-friendly strategic brief for a job application.
@@ -493,42 +506,73 @@ ${JSON.stringify(userProfile, null, 2)}
 Job Analysis:
 ${JSON.stringify(jobAnalysis, null, 2)}
 
-Create a comprehensive strategic brief following the JPMC format. Use a confident, results-oriented tone that demonstrates strategic thinking and immediate value.
+Create a comprehensive strategic brief in executive format. Use a confident, results-oriented tone that demonstrates strategic thinking and immediate value.
 
 CRITICAL REQUIREMENTS:
 
-1. RELEVANT PROJECTS / CASE STUDY:
-   - Create ONE compelling, company-specific project/initiative
-   - Format: "[Company] [Initiative Name] (Proposed)"
-   - Opening paragraph: Clear problem statement and proposed solution
-   - Vision & Value Proposition: 4-5 key benefits with descriptive headers
-   - Anchored in Proven Results: Reference 4-6 REAL achievements from CV with metrics
-   - Closing statement: Strategic transformation impact
+1. PRODUCT VISION (2-3 sentences):
+   - Articulate the transformative vision for this role/initiative
+   - Connect to company mission and customer value
+   - Show strategic understanding of market position
 
-2. 90-DAY PLAN:
-   - Structure: "My initial 90 days will focus on..."
-   - Phase 1 (Days 1-30): Learning & Foundation - 4-5 specific actions
-   - Phase 2 (Days 31-60): Strategy & Validation - 4-5 specific actions  
-   - Phase 3 (Days 61-90): Execution & Leadership - 4-5 specific actions
-   - Closing statement: Emphasize strategic thinking and experience leverage
+2. PROBLEM STATEMENT (1 paragraph):
+   - Define the core business challenge or opportunity
+   - Include market context, customer pain points, competitive threats
+   - Set stage for your proposed solution
 
-3. KEY PERFORMANCE INDICATORS (KPIs):
-   - 5-6 business-critical KPIs relevant to the role
-   - Each KPI: Name, business impact explanation, strategic importance
-   - Focus on revenue, growth, efficiency, customer satisfaction, compliance
-   - Closing statement: Holistic view of product health and business impact
+3. KEY FEATURES & YOUR CONTRIBUTION (3-5 features):
+   - Each feature has:
+     * Bold heading with clear value proposition
+     * 2-3 sentences explaining the feature/initiative
+     * "Contribution:" paragraph in italics showing YOUR specific experience and how you'd lead this
+   - Features should be strategic, business-critical initiatives
+   - Draw from candidate's actual achievements and expertise
+
+4. TECHNICAL & ARCHITECTURAL PRINCIPLES (1 paragraph):
+   - Outline technical approach, architecture, and design principles
+   - Include scalability, security, compliance considerations
+   - Show technical depth appropriate to the role
+
+5. GO-TO-MARKET STRATEGY (1 paragraph):
+   - Phased rollout approach
+   - Key stakeholders and cross-functional collaboration
+   - Risk mitigation and regulatory considerations
+   - Customer education and adoption strategy
+
+6. QUANTIFIABLE IMPACT & SUCCESS METRICS (5-6 metrics):
+   - Each metric with:
+     * Bold category (Customer Experience, Efficiency, Engagement, Revenue, Risk Reduction)
+     * Specific, measurable targets with percentages/numbers
+     * Business impact explanation
+
+7. 90-DAY STRATEGIC PLAN:
+   - Opening: Strategic context and overarching goal
+   - Key Outcomes by 90 Days (3-4 major milestones)
+   - Phase breakdown with specific, actionable items
 
 Return a JSON object with this EXACT structure:
 {
-  "case_study": {
-    "title": "string ([Company] [Initiative Name] (Proposed))",
-    "opening_paragraph": "string (problem statement and proposed solution)",
-    "vision_and_value": "string (4-5 key benefits with descriptive headers)",
-    "proven_results": "string (4-6 real achievements with metrics)",
-    "closing_statement": "string (strategic transformation impact)"
-  },
+  "product_vision": "string (comprehensive product vision with bold headers for key initiatives)",
+  "problem_statement": "string (detailed problem analysis with business impact)",
+  "key_features": [
+    {
+      "heading": "string (feature name)",
+      "description": "string (detailed feature description with benefits)",
+      "contribution": "string (your specific contribution to this feature)"
+    }
+  ],
+  "technical_principles": "string (technical architecture and principles)",
+  "go_to_market_strategy": "string (go-to-market approach and strategy)",
+  "success_metrics": [
+    {
+      "category": "string (Customer Experience, Efficiency, Engagement, Revenue, or Risk Reduction)",
+      "target": "string (specific measurable target with percentages/numbers)",
+      "impact": "string (business impact explanation)"
+    }
+  ],
   "ninety_day_plan": {
-    "opening_statement": "string (My initial 90 days will focus on...)",
+    "opening_statement": "string (strategic context and overarching goal)",
+    "key_outcomes": ["string (3-4 major milestones by 90 days)"],
     "phase_1": {
       "title": "Phase 1: Day 1-30 — [Focus Area]",
       "actions": ["string (4-5 specific actions)"]
@@ -538,20 +582,9 @@ Return a JSON object with this EXACT structure:
       "actions": ["string (4-5 specific actions)"]
     },
     "phase_3": {
-      "title": "Phase 3: Day 61-90 — [Focus Area]",
+      "title": "Phase 3: Days 61-90 — [Focus Area]",
       "actions": ["string (4-5 specific actions)"]
-    },
-    "closing_statement": "string (strategic thinking and experience emphasis)"
-  },
-  "kpis": {
-    "opening_statement": "string (As [Role], I would prioritize these measurable indicators...)",
-    "metrics": [
-      {
-        "name": "string (KPI name)",
-        "description": "string (business impact explanation)"
-      }
-    ],
-    "closing_statement": "string (holistic view of success)"
+    }
   }
 }
 
@@ -598,6 +631,10 @@ Return ONLY valid JSON with no markdown formatting.`
   // Generate resume content (JSON structure for templates)
   async generateResumeContent(jobDescription, userProfile, jobAnalysis) {
     const model = getModel()
+    
+    // Debug: Log what certifications are in the profile
+    console.log('🔍 generateResumeContent - Input certifications:', userProfile.certifications)
+    console.log('🔍 Full userProfile keys:', Object.keys(userProfile))
     
     const prompt = `Create a tailored, ATS-optimized resume for this specific job application.
 
@@ -721,10 +758,10 @@ Generate resume content as JSON:
   },
   "summary": "string (2-3 sentences, tailored to role, with key metrics)",
   "skills": {
-    "technical": ["string (ALL technical keywords from job description - include every single one mentioned)"],
-    "soft": ["string (ALL soft skills from job description - prioritizing, strategic thinking, collaboration, communication, leadership, decision-making, presentation skills, customer success, ability to lead)"],
-    "tools": ["string (specific tools/technologies mentioned in job)"],
-    "industry": ["string (industry-specific terms like 'financial services industry', 'emerging technologies', 'fintech', 'financial technology')"]
+    "technical": ["string (HARD SKILLS ONLY - Product Management, Product Strategy, Roadmap Planning, Data Analysis, P&L Management, Go-to-Market Strategy, User Research, A/B Testing, Metrics & KPIs, Agile/Scrum, API Design, Platform Architecture, Growth Strategy, Product-Led Growth, etc. DO NOT include tools, industries, or soft skills here)"],
+    "soft": ["string (INTERPERSONAL SKILLS ONLY - Leadership, Communication, Collaboration, Strategic Thinking, Cross-functional Leadership, Stakeholder Management, Decision-making, Prioritization, Presentation Skills, Negotiation, Mentorship, etc.)"],
+    "tools": ["string (SOFTWARE/PLATFORMS ONLY - Jira, Figma, Confluence, Tableau, SQL, Python, AWS, Docker, Salesforce, Google Analytics, Amplitude, Mixpanel, Looker, React, Git, Jenkins, etc. NEVER leave this empty)"],
+    "industry": ["string (DOMAIN EXPERTISE ONLY - Fintech, Healthcare, SaaS, E-commerce, B2B, B2C, Enterprise Software, Consumer Products, Financial Services, Payments, etc.)"]
   },
   "experience": [
     {
@@ -766,6 +803,25 @@ CRITICAL INSTRUCTIONS:
    - NEVER use "N/A", "Not Available", "TBD", or any placeholder text
    - Empty/missing dates will be hidden automatically in the resume template
 
+3. SKILLS CATEGORIZATION (CRITICAL - FOLLOW STRICTLY):
+   
+   "technical" = HARD SKILLS ONLY (competencies, methodologies, disciplines)
+   ✓ Include: Product Management, Product Strategy, Roadmap Planning, Data Analysis, P&L Management, Go-to-Market Strategy, User Research, A/B Testing, Metrics & KPIs, Agile/Scrum, API Design, Platform Architecture, Growth Strategy, Product-Led Growth, Market Research, Competitive Analysis
+   ✗ DO NOT include: software tools, industries, or interpersonal skills
+   
+   "soft" = INTERPERSONAL SKILLS ONLY (people skills, leadership traits)
+   ✓ Include: Leadership, Communication, Collaboration, Strategic Thinking, Cross-functional Leadership, Stakeholder Management, Decision-making, Prioritization, Presentation Skills, Negotiation, Mentorship
+   ✗ DO NOT include: technical skills, tools, or methodologies
+   
+   "tools" = SOFTWARE/PLATFORMS ONLY (specific applications, programming languages)
+   ✓ Include: Jira, Figma, Confluence, Tableau, SQL, Python, AWS, Docker, Salesforce, Google Analytics, Amplitude, Mixpanel, Looker, React, Git, Jenkins, Slack, Notion, Miro
+   ✗ DO NOT include: methodologies, skills, or industries
+   MANDATORY - Extract ALL tools from candidate profile - NEVER leave empty
+   
+   "industry" = DOMAIN EXPERTISE ONLY (sectors, markets, business models)
+   ✓ Include: Fintech, Healthcare, SaaS, E-commerce, B2B, B2C, Enterprise Software, Consumer Products, Financial Services, Payments, Pharmaceutical, Retail
+   ✗ DO NOT include: skills, tools, or methodologies
+
 Return ONLY valid JSON with no markdown formatting.`
 
     const result = await model.generateContent(prompt)
@@ -793,6 +849,42 @@ Return ONLY valid JSON with no markdown formatting.`
           })
         }
       })
+    }
+    
+    // Fallback: Ensure skills.tools is never empty
+    console.log('🔍 Skills validation - userProfile.skills:', userProfile.skills)
+    console.log('🔍 Generated resumeData.skills:', resumeData.skills)
+    
+    if (!resumeData.skills) resumeData.skills = {}
+    if (!resumeData.skills.tools || resumeData.skills.tools.length === 0) {
+      console.log('⚠️ Tools are empty, applying fallback...')
+      
+      // Extract tools from user profile
+      const profileTools = userProfile.skills?.tools || []
+      const profileTechnical = userProfile.skills?.technical || []
+      
+      console.log('  - profileTools:', profileTools)
+      console.log('  - profileTechnical:', profileTechnical)
+      
+      // Common tools to look for in technical skills
+      const toolKeywords = ['Jira', 'Figma', 'SQL', 'Python', 'AWS', 'Docker', 'Kubernetes', 'Tableau', 'Salesforce', 'Git', 'Jenkins', 'Confluence', 'Agile', 'Scrum']
+      const extractedTools = profileTechnical.filter(skill => 
+        toolKeywords.some(tool => skill.toLowerCase().includes(tool.toLowerCase()))
+      )
+      
+      console.log('  - extractedTools:', extractedTools)
+      
+      resumeData.skills.tools = [...profileTools, ...extractedTools].filter((v, i, a) => a.indexOf(v) === i) // Remove duplicates
+      
+      if (resumeData.skills.tools.length === 0) {
+        // Last resort: use some technical skills as tools
+        resumeData.skills.tools = profileTechnical.slice(0, 5)
+        console.log('  - Using technical skills as fallback:', resumeData.skills.tools)
+      }
+      
+      console.log('✅ Tools populated from profile:', resumeData.skills.tools)
+    } else {
+      console.log('✅ Tools already populated by Gemini:', resumeData.skills.tools)
     }
     
     return resumeData

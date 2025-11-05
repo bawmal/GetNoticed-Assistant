@@ -115,13 +115,22 @@ export default function ProfileSetup() {
         cvText += parsedData.skills.join(', ') + '\n\n'
       }
       
-      // Certifications
+      // Certifications (handle both array of strings and array of objects)
+      console.log('  - Certifications data:', parsedData.certifications)
       if (parsedData.certifications && parsedData.certifications.length > 0) {
         cvText += 'CERTIFICATIONS\n'
-        parsedData.certifications.forEach(cert => {
-          cvText += `${cert.name || ''} - ${cert.issuer || ''} (${cert.date || ''})\n`
+        parsedData.certifications.forEach((cert, index) => {
+          console.log(`    Cert ${index}:`, cert, 'type:', typeof cert)
+          if (typeof cert === 'string') {
+            cvText += `- ${cert}\n`
+          } else if (cert && typeof cert === 'object') {
+            cvText += `- ${cert.name || cert} ${cert.issuer ? '- ' + cert.issuer : ''} ${cert.date ? '(' + cert.date + ')' : ''}\n`
+          }
         })
         cvText += '\n'
+        console.log('  - Certifications section added to cvText')
+      } else {
+        console.log('  - No certifications found or empty array')
       }
       
       setFormData({
@@ -213,6 +222,14 @@ export default function ProfileSetup() {
 
       // Parse CV with Gemini
       const parsedData = await geminiService.parseCVContent(formData.cv_text)
+      
+      // Debug: Log parsed data
+      console.log('📋 Parsed CV Data:')
+      console.log('  - Name:', parsedData.personal_info?.name)
+      console.log('  - Experience entries:', parsedData.experience?.length)
+      console.log('  - Education entries:', parsedData.education?.length)
+      console.log('  - Certifications:', parsedData.certifications)
+      console.log('  - Skills:', parsedData.skills)
 
       // Upload file if provided
       let cvPath = null

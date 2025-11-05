@@ -125,19 +125,10 @@ export default function JobAnalysis() {
         parsedProfile
       )
 
-      // Use simple CV matcher for job alignment
-      const cvMatchScore = calculateCVMatch(profile, {
-        title: jobDetails.job_title || jobData.job_title,
-        description: finalJobDescription,
-        company: jobDetails.company_name || jobData.company_name
-      })
-
-      // Use simple CV match results
-      analysisResult.match_score = cvMatchScore.total
-      analysisResult.matchPercentage = cvMatchScore.total
-      analysisResult.breakdown = cvMatchScore
-      console.log('📊 Simple CV match score:', cvMatchScore.total + '%')
-      console.log('   Breakdown:', cvMatchScore)
+      // Use the Gemini analysis results (with role classification fix)
+      console.log('📊 Gemini analysis score:', analysisResult.match_score + '%')
+      console.log('📊 Role type detected:', analysisResult.role_type)
+      console.log('📊 Analysis breakdown:', analysisResult.score_breakdown)
 
       setAnalysis(analysisResult)
       setAnalyzing(false)
