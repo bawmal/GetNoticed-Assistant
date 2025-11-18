@@ -26,8 +26,32 @@ export default function Dashboard() {
     avgScore: 0
   })
   const [statusMenuOpen, setStatusMenuOpen] = useState(null)
+  const [showAllApplications, setShowAllApplications] = useState(false)
 
   useEffect(() => {
+    // Check for email confirmation in URL
+    const handleEmailConfirmation = async () => {
+      const urlParams = new URLSearchParams(window.location.search)
+      const accessToken = urlParams.get('access_token')
+      const refreshToken = urlParams.get('refresh_token')
+      
+      if (accessToken && refreshToken) {
+        // Process email confirmation
+        const { error } = await supabase.auth.setSession({
+          access_token: accessToken,
+          refresh_token: refreshToken
+        })
+        
+        if (!error) {
+          // Show success message
+          alert('🎉 Email confirmed successfully! Welcome to GetNoticed!')
+          // Clean up URL
+          window.history.replaceState({}, document.title, window.location.pathname)
+        }
+      }
+    }
+    
+    handleEmailConfirmation()
     loadDashboardData()
   }, [])
 
@@ -284,10 +308,17 @@ export default function Dashboard() {
       {/* Recent Applications */}
       <div className="bg-white rounded-2xl border border-gray-200">
         <div className="flex items-center justify-between px-6 py-4 border-b border-gray-200">
-          <h2 className="text-lg font-semibold text-gray-900">Recent Applications</h2>
-          <Link to="/applications" className="text-sm font-medium text-gray-600 hover:text-gray-900">
-            View All
-          </Link>
+          <h2 className="text-lg font-semibold text-gray-900">
+            {showAllApplications ? 'All Applications' : 'Recent Applications'}
+          </h2>
+          {applications.length > 5 && (
+            <button 
+              onClick={() => setShowAllApplications(!showAllApplications)}
+              className="text-sm font-medium text-blue-600 hover:text-blue-700 transition-colors"
+            >
+              {showAllApplications ? 'Show Less' : `View All (${applications.length})`}
+            </button>
+          )}
         </div>
 
         {applications.length === 0 ? (
@@ -304,7 +335,7 @@ export default function Dashboard() {
           </div>
         ) : (
           <div className="divide-y divide-gray-200">
-            {applications.slice(0, 5).map((app) => (
+            {(showAllApplications ? applications : applications.slice(0, 5)).map((app) => (
               <div
                 key={app.id}
                 className="hover:bg-gray-50 transition-colors"
