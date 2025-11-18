@@ -493,7 +493,114 @@ Return ONLY valid JSON.`
       
       const model = getModel()
       
-      const prompt = `You are a strategic career advisor creating a polished, executive-friendly strategic brief for a job application.
+      // Detect role type from job description for adaptive brief
+      const jobDescLower = jobDescription.toLowerCase()
+      const jobTitle = jobAnalysis?.job_title?.toLowerCase() || ''
+      
+      let roleType = 'general' // default
+      if (jobDescLower.includes('product manager') || jobDescLower.includes('product lead') || jobTitle.includes('product')) {
+        roleType = 'product'
+      } else if (jobDescLower.includes('engineer') || jobDescLower.includes('developer') || jobDescLower.includes('software') || jobTitle.includes('engineer')) {
+        roleType = 'engineering'
+      } else if (jobDescLower.includes('project manager') || jobDescLower.includes('program manager') || jobTitle.includes('project')) {
+        roleType = 'project'
+      } else if (jobDescLower.includes('marketing') || jobDescLower.includes('brand') || jobTitle.includes('marketing')) {
+        roleType = 'marketing'
+      } else if (jobDescLower.includes('sales') || jobDescLower.includes('account') || jobTitle.includes('sales')) {
+        roleType = 'sales'
+      } else if (jobDescLower.includes('finance') || jobDescLower.includes('financial') || jobDescLower.includes('accounting') || jobTitle.includes('finance')) {
+        roleType = 'finance'
+      } else if (jobDescLower.includes('data') || jobDescLower.includes('analyst') || jobDescLower.includes('analytics') || jobTitle.includes('data')) {
+        roleType = 'data'
+      }
+      
+      // Role-specific terminology
+      const roleConfig = {
+        product: {
+          vision: 'PRODUCT VISION',
+          visionDesc: 'Articulate the transformative product vision',
+          initiatives: 'KEY FEATURES & YOUR CONTRIBUTION',
+          initiativesDesc: 'Strategic product features and your leadership',
+          technical: 'TECHNICAL & ARCHITECTURAL PRINCIPLES',
+          technicalDesc: 'Technical approach, architecture, and design principles',
+          strategy: 'GO-TO-MARKET STRATEGY',
+          strategyDesc: 'Phased rollout, stakeholder collaboration, and adoption strategy'
+        },
+        engineering: {
+          vision: 'TECHNICAL VISION',
+          visionDesc: 'Articulate the technical architecture and engineering approach',
+          initiatives: 'KEY TECHNICAL INITIATIVES & YOUR CONTRIBUTION',
+          initiativesDesc: 'Critical engineering projects and your technical leadership',
+          technical: 'ARCHITECTURE & IMPLEMENTATION APPROACH',
+          technicalDesc: 'System design, scalability, performance, and best practices',
+          strategy: 'DELIVERY & DEPLOYMENT STRATEGY',
+          strategyDesc: 'Development phases, CI/CD approach, and quality assurance'
+        },
+        project: {
+          vision: 'PROJECT VISION & OBJECTIVES',
+          visionDesc: 'Define project goals, scope, and strategic alignment',
+          initiatives: 'KEY DELIVERABLES & YOUR CONTRIBUTION',
+          initiativesDesc: 'Major project milestones and your project leadership',
+          technical: 'METHODOLOGY & EXECUTION APPROACH',
+          technicalDesc: 'Project management framework, tools, and processes',
+          strategy: 'STAKEHOLDER & RISK MANAGEMENT STRATEGY',
+          strategyDesc: 'Communication plan, risk mitigation, and change management'
+        },
+        marketing: {
+          vision: 'MARKETING VISION & BRAND STRATEGY',
+          visionDesc: 'Articulate brand positioning and marketing objectives',
+          initiatives: 'KEY CAMPAIGNS & YOUR CONTRIBUTION',
+          initiativesDesc: 'Strategic marketing initiatives and your creative leadership',
+          technical: 'CHANNEL STRATEGY & EXECUTION',
+          technicalDesc: 'Marketing channels, tools, analytics, and optimization',
+          strategy: 'CAMPAIGN LAUNCH & GROWTH STRATEGY',
+          strategyDesc: 'Multi-channel approach, audience targeting, and performance tracking'
+        },
+        sales: {
+          vision: 'SALES VISION & TERRITORY STRATEGY',
+          visionDesc: 'Define sales objectives and market opportunity',
+          initiatives: 'KEY ACCOUNTS & YOUR CONTRIBUTION',
+          initiativesDesc: 'Strategic accounts and your sales leadership',
+          technical: 'SALES PROCESS & METHODOLOGY',
+          technicalDesc: 'Sales framework, CRM strategy, and pipeline management',
+          strategy: 'TERRITORY & GROWTH STRATEGY',
+          strategyDesc: 'Market penetration, relationship building, and revenue acceleration'
+        },
+        finance: {
+          vision: 'FINANCIAL VISION & OBJECTIVES',
+          visionDesc: 'Articulate financial strategy and value creation',
+          initiatives: 'KEY FINANCIAL INITIATIVES & YOUR CONTRIBUTION',
+          initiativesDesc: 'Strategic financial projects and your analytical leadership',
+          technical: 'FINANCIAL MODELING & ANALYSIS APPROACH',
+          technicalDesc: 'Financial frameworks, tools, reporting, and compliance',
+          strategy: 'IMPLEMENTATION & OPTIMIZATION STRATEGY',
+          strategyDesc: 'Cost optimization, process improvement, and stakeholder reporting'
+        },
+        data: {
+          vision: 'DATA VISION & ANALYTICS STRATEGY',
+          visionDesc: 'Define data-driven insights and analytical objectives',
+          initiatives: 'KEY ANALYTICS INITIATIVES & YOUR CONTRIBUTION',
+          initiativesDesc: 'Strategic data projects and your analytical leadership',
+          technical: 'DATA ARCHITECTURE & METHODOLOGY',
+          technicalDesc: 'Data pipelines, modeling approach, tools, and governance',
+          strategy: 'INSIGHTS & IMPLEMENTATION STRATEGY',
+          strategyDesc: 'Stakeholder enablement, reporting cadence, and impact measurement'
+        },
+        general: {
+          vision: 'STRATEGIC VISION',
+          visionDesc: 'Articulate the transformative vision for this role',
+          initiatives: 'KEY INITIATIVES & YOUR CONTRIBUTION',
+          initiativesDesc: 'Strategic initiatives and your leadership',
+          technical: 'APPROACH & METHODOLOGY',
+          technicalDesc: 'Strategic approach, frameworks, and best practices',
+          strategy: 'EXECUTION STRATEGY',
+          strategyDesc: 'Implementation approach, stakeholder collaboration, and success factors'
+        }
+      }
+      
+      const config = roleConfig[roleType]
+      
+      const prompt = `You are a strategic career advisor creating a polished, executive-friendly strategic brief for a ${roleType === 'general' ? '' : roleType + ' '}job application.
 
 Job Description:
 ${jobDescription}
@@ -506,42 +613,39 @@ ${JSON.stringify(userProfile, null, 2)}
 Job Analysis:
 ${JSON.stringify(jobAnalysis, null, 2)}
 
-Create a comprehensive strategic brief in executive format. Use a confident, results-oriented tone that demonstrates strategic thinking and immediate value.
+Create a comprehensive strategic brief in executive format. Use a confident, results-oriented tone that demonstrates strategic thinking and immediate value. ADAPT ALL CONTENT TO THE SPECIFIC ROLE TYPE.
 
 CRITICAL REQUIREMENTS:
 
-1. PRODUCT VISION (2-3 sentences):
-   - Articulate the transformative vision for this role/initiative
-   - Connect to company mission and customer value
-   - Show strategic understanding of market position
+1. ${config.vision} (2-3 sentences):
+   - ${config.visionDesc}
+   - Connect to company mission and stakeholder value
+   - Show strategic understanding of the opportunity
 
 2. PROBLEM STATEMENT (1 paragraph):
    - Define the core business challenge or opportunity
-   - Include market context, customer pain points, competitive threats
+   - Include relevant context (market, customer, operational, or technical challenges)
    - Set stage for your proposed solution
 
-3. KEY FEATURES & YOUR CONTRIBUTION (3-5 features):
-   - Each feature has:
+3. ${config.initiatives} (3-5 items):
+   - Each initiative has:
      * Bold heading with clear value proposition
-     * 2-3 sentences explaining the feature/initiative
-     * "Contribution:" paragraph in italics showing YOUR specific experience and how you'd lead this
-   - Features should be strategic, business-critical initiatives
+     * 2-3 sentences explaining the initiative
+     * "Contribution:" paragraph showing YOUR specific experience and how you'd lead this
+   - ${config.initiativesDesc}
    - Draw from candidate's actual achievements and expertise
 
-4. TECHNICAL & ARCHITECTURAL PRINCIPLES (1 paragraph):
-   - Outline technical approach, architecture, and design principles
-   - Include scalability, security, compliance considerations
-   - Show technical depth appropriate to the role
+4. ${config.technical} (1 paragraph):
+   - ${config.technicalDesc}
+   - Show depth appropriate to the role
 
-5. GO-TO-MARKET STRATEGY (1 paragraph):
-   - Phased rollout approach
-   - Key stakeholders and cross-functional collaboration
-   - Risk mitigation and regulatory considerations
-   - Customer education and adoption strategy
+5. ${config.strategy} (1 paragraph):
+   - ${config.strategyDesc}
+   - Include key stakeholders and success factors
 
 6. QUANTIFIABLE IMPACT & SUCCESS METRICS (5-6 metrics):
    - Each metric with:
-     * Bold category (Customer Experience, Efficiency, Engagement, Revenue, Risk Reduction)
+     * Bold category (relevant to role: Performance, Efficiency, Quality, Revenue, Cost Savings, etc.)
      * Specific, measurable targets with percentages/numbers
      * Business impact explanation
 
